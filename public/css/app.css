@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Monoton&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+@layer utilities {
+    .font-retro {
+        font-family: "Monoton", sans-serif;
+    }
+
+    /* HIJAU MUDA MINT */
+    .BG-HMM {
+        background-color: #93d3ae;
+    }
+
+    .HMM {
+        color: #93d3ae;
+    }
+
+
+    /* HIJAU BIRU TUA */
+    .BG-HBT {
+        background-color: #2bbaa5;
+    }
+
+    .HBT {
+        color: #2bbaa5;
+    }
+
+
+    /* KUNING PUCAT */
+    .BG-KP {
+        background-color: #faecb6;
+    }
+
+    .KP {
+        color: #faecb6;
+    }
+
+    .BD-KP {
+        border-color: #faecb6;
+    }
+
+
+    /* ORANYE MUTED */
+    .BG-OM {
+        background-color: #f9a822;
+    }
+
+    .OM {
+        color: #f9a822;
+    }
+
+
+    /* ORANYE KORAL */
+    .OK {
+        color: #f96635;
+    }
+
+    .BG-OK {
+        background-color: #f96635;
+    }
+}
+
+/* HBT	#2BBAA5		
+HMM	#93D3AE	
+KP	#FAECB6	
+OM	#F9A822	
+OK	#F96635	 */
