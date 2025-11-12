@@ -4,6 +4,8 @@ namespace App\Livewire\Karyawan;
 
 use App\Models\budgets;
 use App\Models\transaction;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class FormTransaksi extends Component
@@ -12,14 +14,15 @@ class FormTransaksi extends Component
     public $note;
     public $date;
     public $type;
-    public $budget_id;
-    public $category_id;
+    public $budget;
+    // public $budget_id;
+    // public $category_id;
 
     
     
     public function store()
     {
-        // dd('masuk');
+        dd($this->all());
         
         $this->Validate([
             'amount' => 'required|numeric',
@@ -35,20 +38,22 @@ class FormTransaksi extends Component
             'date.date' => 'Tanggal tidak valid.',
         ]);
 
+        $user = Auth::user();
+        // $this->budget;
+        // dd($budget);
+
         // Menyimpan data transaksi
         
         transaction::create([
-            'category_id' => $this->auth()->id(), // Ganti dengan logika yang sesuai untuk mendapatkan category_id
-            'budget_id' => '2', // Ganti dengan logika yang sesuai untuk mendapatkan budget_id
+            'user_id' => $user->id,
+            'budget_id' => $this->budget,
             'amount' => $this->amount,
             'note' => $this->note,
             'type' => $this->type,
             'date' => $this->date,
         ]);
 
-        // Memperbarui total_amount pada tabel budgets
-
-        $budget = budgets::find(2); // Ganti dengan logika yang sesuai untuk mendapatkan budget_id
+        $budget = budgets::find($budget);
 
         if ($this->type === 'expense') {
             $budget->total_amount -= $this->amount;
@@ -56,22 +61,22 @@ class FormTransaksi extends Component
             $budget->total_amount += $this->amount;
         }
 
-        // Simpan perubahan pada budget
-
         $budget->save();
 
-        
         session()->flash('message', 'Transaksi berhasil ditambahkan.');
         return redirect()->route('transaksi');
     }
 
-    // public function store () 
-    // {
-    //     dd($this->all());
-    // }
-
     public function render()
     {
-        return view('livewire.karyawan.form-transaksi');
+        $datauser = Auth::user();
+        $dataid = $datauser->id;
+        $budget = DB::table('budget_users')->where('user_id', $dataid)->pluck('budget_id');
+        $pilihanbudget = budgets::where('id', $budget)->get();
+        // dd($pilihanbudget);
+        
+        return view('livewire.karyawan.form-transaksi', [
+            'pilihanbudget' => $pilihanbudget
+        ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\BudgetMaster;
+use App\Models\budgetmaster as ModelsBudgetmaster;
 use App\Models\budgets;
 use Livewire\Component;
 
@@ -9,6 +11,7 @@ class Budget extends Component
 {
     public function deletebudget($id)
     {
+        dd($id);
         $budget = budgets::find($id);
         if ($budget) {
             $budget->delete();
@@ -23,6 +26,8 @@ class Budget extends Component
         return view('livewire.admin.budget',[
             'title' => 'Budget Management',
             'budgets' => budgets::all(),
-        ]);
+            'budget_master' => ModelsBudgetmaster::all(),
+            // 'budget_master' => BudgetMaster::all(),
+        ])->extends('layouts.admin');
     }
 }

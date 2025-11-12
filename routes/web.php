@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Livewire\Admin\EditKaryawan;
+use App\Livewire\Admin\FormBudgetMaster;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Passwords\Confirm;
 use App\Livewire\Auth\Passwords\Email;
@@ -52,6 +53,7 @@ Route::prefix('admin')->middleware(['auth','role:admin'])
     Route::view('/budget', 'pages/admin/budget')->name('admin.budget');
     Route::view('/budget/edit/{id}', 'pages/admin/editbudget')->name('admin.editbudget');
     Route::view('/budget/tambah', 'pages/admin/formbudget')->name('admin.tambahbudget');
+    Route::get('/budget/anggaran', FormBudgetMaster::class)->name('admin.budget_master');
 });
 // testing account
 // email:rian@example.com

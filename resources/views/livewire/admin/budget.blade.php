@@ -1,8 +1,14 @@
 <div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
-            <h3 class="text-xl font-medium text-gray-500 pb-2">Jumlah Karyawan</h3>
-            {{-- <h1 class="text-3xl font-medium">{{ $totalkaryawan }}</h1> --}}
+            <div class="flex justify-between">
+                <h3 class="text-xl font-medium text-gray-500 pb-2">Budget</h3>
+                <a href="{{route('admin.budget_master')}}">
+                    <i class="fa-solid fa-plus text-gray-500"></i>
+                </a>
+            </div>
+            <h1 class="text-3xl font-medium">Rp. {{ number_format($budget_master[0]->budget, '0', ',', '.') }};</h1>
+            <a href="" class="text-sm text-gray-500 mt-2">Detail<i class="fa-solid fa-arrow-right ml-2"></i></a>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
             <h3 class="text-xl font-medium text-gray-500 pb-2">Karyawan</h3>
@@ -78,7 +84,7 @@
                                                 </p>
                                             </td>
                                             <td class="px-5 py-4 sm:px-6">
-                                                <h1>ini nama nya</h1>
+                                                <h1>{{ $budget->name }}</h1>
                                             </td>
                                             <td class="px-5 py-4 sm:px-6"><span
                                                     class="rounded-full px-2 py-0.5 text-theme-xs font-medium bg-success-50 text-success-700 dark:bg-success-500/15 dark:text-success-500">Rp. {{ number_format($budget->total_amount, 0, ',', '.') }};</span>
@@ -134,9 +140,9 @@
                                                 </div>
                                                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                     <h3 id="dialog-title" class="text-base font-semibold text-black">
-                                                        Hapus Data Karyawan</h3>
+                                                        Hapus Data Budget</h3>
                                                     <div class="mt-2">
-                                                        <p class="text-sm text-gray-500">Yakin mau hapus data karyawan ini?</p>
+                                                        <p class="text-sm text-gray-500">Yakin mau hapus data budget ini?</p>
                                                     </div>
                                                 </div>
                                             </div>

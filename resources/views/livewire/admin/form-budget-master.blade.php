@@ -3,13 +3,13 @@
          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Form Tambah Budget</h2>
      </div>
      {{-- form start --}}
-     <form class="gap-x-4" wire:submit.prevent="store">
+     <form class="gap-x-4" wire:submit.prevent="simpan">
          <div>
-             {{-- name  --}}
+             {{-- budget --}}
              <div>
-                 <label for="name" class="block text-sm font-medium text-gray-900">Name</label>
+                 <label for="budget" class="block text-sm font-medium text-gray-900">Budget</label>
                  <div class="mt-1">
-                     <input type="text" wire:model="name" id="name"
+                     <input type="number" wire:model="budget" id="budget"
                          class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                      @error('name')
                          <span class="text-sm text-red-500">
@@ -18,24 +18,24 @@
                      @enderror
                  </div>
              </div>
-             {{-- total budget --}}
+             {{-- tahun anggaran --}}
              <div>
-                 <label for="email" class="block text-sm font-medium text-gray-900">Jumlah Budget</label>
+                 <label for="tahun_anggaran" class="block text-sm font-medium text-gray-900">Tahun Anggaran</label>
                  <div class="mt-1">
-                     <input type="number" wire:model="total_amount" id="total_amount"
+                     <input type="number" wire:model="tahun_anggaran" id="tahun_anggaran"
                          class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                     @error('total_amount')
+                     @error('email')
                          <span class="text-sm text-red-500">
                              {{ $message }}
                          </span>
                      @enderror
                  </div>
              </div>
-             {{-- start date --}}
+             {{-- datail --}}
              <div>
-                 <label for="amount" class="block text-sm font-medium text-gray-900">Dimulai</label>
+                 <label for="amount" class="block text-sm font-medium text-gray-900">Detail</label>
                  <div class="mt-1">
-                     <input type="date" wire:model="start_date" id="start_date"
+                     <input type="text" wire:model="detail" id="detail"
                          class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                      @error('password')
                          <span class="text-sm text-red-500">
@@ -45,37 +45,6 @@
                  </div>
              </div>
              {{-- end date --}}
-             <div>
-                 <label for="amount" class="block text-sm font-medium text-gray-900">Selesai</label>
-                 <div class="mt-1">
-                     <input type="date" wire:model="end_date" id="end_date"
-                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                     @error('password')
-                         <span class="text-sm text-red-500">
-                             {{ $message }}
-                         </span>
-                     @enderror
-                 </div>
-             </div>
-             {{-- pilih karyawan --}}
-             <div>
-                 <label for="pilihan_users" class="block text-sm font-medium text-gray-900">Pilih Karyawan</label>
-                 <div class="mt-1">
-                     <select type="date" wire:model="pilihan_users" id="pilihan_users" multiple
-                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">>
-                           
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach
-                    </select>
-                     @error('pilihan_users')
-                         <span class="text-sm text-red-500">
-                             {{ $message }}
-                         </span>
-                     @enderror
-                 </div>
-             </div>
-             
              <div>
                  <div class="bg-gray-700/25 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mt-4 w-full">
                      <a wire:navigate href="{{route('admin.budget')}}" type="button" command="close" commandfor="dialog"

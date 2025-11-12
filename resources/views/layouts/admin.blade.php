@@ -8,9 +8,7 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>{{ $title ?? 'Spendly-Budget Tracker' }}</title>
-    <!-- Memuat Tailwind CSS CDN -->
     @vite('resources/css/app.css')
-    <!-- Konfigurasi Tailwind untuk menggunakan font Inter -->
     @livewireStyles
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -60,30 +58,30 @@
                 </button>
             </div>
 
-            <!-- Isi Menu Sidebar -->
+            <!-- Sidebar -->
             <div class="p-4">
                 <a wire:navigate href="{{ route('dashboardadmin') }}"
-                    class="flex items-center p-3 text-sm font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-display mr-2"></i>
                     Beranda
                 </a>
                 <a wire:navigate href="{{ route('transaksiadmin') }}"
-                    class="flex items-center p-3 text-sm font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-money-bill-wave mr-2"></i>
                     Transaksi
                 </a>
                 <a href="#"
-                    class="flex items-center p-3 text-sm font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-chart-simple mr-2"></i>
                     Statistik
                 </a>
                 <a wire:navigate href="{{ route('admin.karyawan') }}"
-                    class="flex items-center p-3 text-sm font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-users mr-2"></i>
                     Karyawan
                 </a>
                 <a wire:navigate href="{{ route('admin.budget') }}"
-                    class="flex items-center p-3 text-sm font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-sack-dollar mr-2"></i>
                     Budget
                 </a>
@@ -92,10 +90,9 @@
     </nav>
 
     <!-- 2. MAIN CONTENT WRAPPER -->
-    <!-- Pada desktop (lg), margin kiri 64px untuk menggeser konten dari sidebar -->
     <div class="flex flex-col flex-1 bg-transparent transition-all duration-300">
 
-        <!-- HEADER TOP (Selalu ada) -->
+        <!-- HEADER TOP -->
         <header class="shadow-md p-4 sticky top-0 z-40 m-4 rounded-lg border-2 bg-amber-100">
             <div class="flex justify-between items-center">
                 <!-- Tombol Buka Sidebar (Hanya Mobile) -->
@@ -144,8 +141,6 @@
             </div>
         </header>
 
-        <!-- MAIN SCROLLABLE CONTENT AREA -->
-        <!-- h-full agar konten utama mengisi sisa tinggi, overflow-y-auto agar konten bisa digulir -->
         <main class="flex-1 p-6 overflow-y-auto scroll-container">
             <h1 class="text-xl font-semibold text-gray-800 mb-4">
                 @yield('title')   

@@ -24,14 +24,20 @@ class User extends Authenticatable
         'role',
     ];
 
-     public function budgets()
+     public function createdBudgets()
     {
-        return $this->hasMany(budgets::class);
+        return $this->hasMany(budgets::class, 'user_id'); 
     }
 
+    public function alokasiBudgets()
+    {
+        return $this->belongsToMany(budgets::class, 'budget_users');
+    }
+
+    // Relasi 3: Transaksi Pengeluaran
     public function transactions()
     {
-        return $this->hasMany(transaction::class);
+        return $this->hasMany(transaction::class, 'user_id'); 
     }
 
     /**

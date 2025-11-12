@@ -10,9 +10,10 @@ class transaction extends Model
         'amount',
         'note',
         'date',
+        'status',
         'type',
         'budget_id',
-        'category_id',
+        'user_id',
     ];
 
     public function user()
@@ -23,10 +24,5 @@ class transaction extends Model
     public function budget()
     {
         return $this->belongsTo(budgets::class);
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(category::class);
     }
 }

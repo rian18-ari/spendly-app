@@ -5,6 +5,7 @@
      {{-- form start --}}
      <form class="gap-x-4" wire:submit.prevent="store">
          <div>
+            {{-- keterangan --}}
              <div>
                  <label for="note" class="block text-sm font-medium text-gray-900">Keterangan</label>
                  <div class="mt-1">
@@ -19,6 +20,7 @@
                          @enderror
                  </div>
              </div>
+             {{-- jenis --}}
              <div>
                  <label for="note" class="block text-sm font-medium text-gray-900">Jenis</label>
                  <div class="mt-1">
@@ -32,6 +34,20 @@
                      </select>
                  </div>
              </div>
+             {{-- budget --}}
+             <div>
+                 <label for="note" class="block text-sm font-medium text-gray-900">Budget</label>
+                 <div class="mt-1">
+                     <select wire:model="budget" id="" required class="block w-full rounded-md border-gray-300">
+                         <option value="">--Pilih Budget--
+                         </option>
+                         @foreach ($pilihanbudget as $item)
+                         <option value="{{$item->id}}">{{$item->name}}</option>
+                         @endforeach
+                     </select>
+                 </div>
+             </div>
+             {{-- jumlah --}}
              <div>
                  <label for="amount" class="block text-sm font-medium text-gray-900">Jumlah
                      (Rp.)</label>
@@ -46,6 +62,7 @@
                          @enderror
                  </div>
              </div>
+             {{-- tanggal --}}
              <div>
                  <label for="date" class="block text-sm font-medium text-gray-900">Tanggal</label>
                  <div class="mt-1">

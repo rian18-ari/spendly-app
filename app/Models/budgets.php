@@ -11,11 +11,18 @@ class budgets extends Model
         'end_date',
         'total_amount',
         'user_id',
+        'name',
+        'budgetmaster_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'budget_users');
     }
 
     public function transactions()
@@ -26,5 +33,10 @@ class budgets extends Model
     public function perjalananDinas()
     {
         return $this->hasMany(PerjalananDinas::class);
+    }
+
+    public function budget_dinas()
+    {
+        return $this->belongsTo(budgetmaster::class);
     }
 }
