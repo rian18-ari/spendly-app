@@ -112,16 +112,28 @@
                     <el-menu anchor="bottom end" popover
                         class="w-56 origin-top-right rounded-lg border-2 bg-amber-50 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                         <div class="py-1">
-                            <p 
-                               class="block px-4 py-2 " >Nama Karyawan</p>
-                                <hr class="mx-auto w-50 border-1 mb-2">
-                            <p 
-                                class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden"><span class="rounded-lg bg-yellow-200 w-auto h-auto p-1 border-yellow-300 border-2">Karyawan</span></p>
+                            @auth
+                                <p class="block px-4 py-2 ">{{ Auth::user()->name }}</p>
+                            @endauth
+                            <hr class="mx-auto w-50 border-1 mb-2">
+                            @auth
+                                <p
+                                    class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">
+                                    @if (Auth::user()->role === 'admin')
+                                        <span
+                                            class="rounded-lg bg-red-200 w-auto h-auto p-1 border-red-300 border-2">admin</span>
+                                </p>
+                            @else
+                                <span
+                                    class="rounded-lg bg-yellow-200 w-auto h-auto p-1 border-yellow-300 border-2">Karyawan</span>
+                                </p>
+                                @endif
+                            @endauth
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">Support</a>
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">License</a>
-                            <form action="{{route('logout')}}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit"
                                     class="block w-full px-4 py-2 text-left text-sm text-red-600">Logout</button>

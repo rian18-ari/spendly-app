@@ -27,9 +27,9 @@
                      <select wire:model="type" id="" required class="block w-full rounded-md border-gray-300">
                          <option value="">--Pilih Jenis--
                          </option>
-                         <option value="income">Pemasukan
+                         <option value="pemasukan">Pemasukan
                          </option>
-                         <option value="expense">Pengeluaran
+                         <option value="pengeluaran">Pengeluaran
                          </option>
                      </select>
                  </div>

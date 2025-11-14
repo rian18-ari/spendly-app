@@ -45,7 +45,7 @@
         <div class="m-4 rounded-lg border-2 h-[600px] flex flex-col bg-orange-200 lg:shadow-2xl">
 
             <!-- Header Sidebar -->
-            <div class="p-6 bg-gray-50 flex items-center justify-between rounded-lg border-b-2">
+            <div class="p-6 flex items-center justify-between rounded-lg border-b-2 bg-amber-50">
                 <img src="{{ asset('asset/img/spendly-high-resolution-logo-transparent.png') }}" alt=""
                     class="w-70">
                 <!-- Tombol Tutup Sidebar (Hanya Mobile) -->
@@ -65,6 +65,16 @@
                     <i class="fa-solid fa-display mr-2"></i>
                     Beranda
                 </a>
+                <a wire:navigate href="{{ route('admin.budget') }}"
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    <i class="fa-solid fa-sack-dollar mr-2"></i>
+                    Budget
+                </a>
+                <a wire:navigate href="{{ route('admin.karyawan') }}"
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    <i class="fa-solid fa-users mr-2"></i>
+                    Karyawan
+                </a>
                 <a wire:navigate href="{{ route('transaksiadmin') }}"
                     class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-money-bill-wave mr-2"></i>
@@ -74,16 +84,6 @@
                     class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-chart-simple mr-2"></i>
                     Statistik
-                </a>
-                <a wire:navigate href="{{ route('admin.karyawan') }}"
-                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
-                    <i class="fa-solid fa-users mr-2"></i>
-                    Karyawan
-                </a>
-                <a wire:navigate href="{{ route('admin.budget') }}"
-                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
-                    <i class="fa-solid fa-sack-dollar mr-2"></i>
-                    Budget
                 </a>
             </div>
         </div>
@@ -119,18 +119,26 @@
                     <el-menu anchor="bottom end" popover
                         class="w-56 origin-top-right rounded-lg border-2 bg-amber-50 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                         <div class="py-1">
-                            <p class="block px-4 py-2 ">Nama Karyawan</p>
+                            @auth
+                            <p class="block px-4 py-2 ">{{ Auth::user()->name }}</p>
+                            @endauth
                             <hr class="mx-auto w-50 border-1 mb-2">
-                            <p
-                                class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">
+                                <p
+                                    class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">
+                                    @if (Auth::user()->role === 'admin')
+                                        <span
+                                            class="rounded-lg bg-red-200 w-auto h-auto p-1 border-red-300 border-2">admin</span>
+                                </p>
+                            @else
                                 <span
                                     class="rounded-lg bg-yellow-200 w-auto h-auto p-1 border-yellow-300 border-2">Karyawan</span>
-                            </p>
+                                </p>
+                                @endif
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">Support</a>
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">License</a>
-                            <form action="{{route('logout')}}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit"
                                     class="block w-full px-4 py-2 text-left text-sm text-red-600">Logout</button>
@@ -143,7 +151,7 @@
 
         <main class="flex-1 p-6 overflow-y-auto scroll-container">
             <h1 class="text-xl font-semibold text-gray-800 mb-4">
-                @yield('title')   
+                @yield('title')
             </h1>
             @yield('content')
 

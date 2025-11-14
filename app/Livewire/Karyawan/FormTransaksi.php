@@ -22,13 +22,14 @@ class FormTransaksi extends Component
     
     public function store()
     {
-        dd($this->all());
+        // dd($this->all());
         
         $this->Validate([
             'amount' => 'required|numeric',
             'note' => 'required|string',
-            'type' => 'required|in:income,expense',
+            'type' => 'required|in:pengeluaran,pemasukan',
             'date' => 'required|date',
+            'budget' => 'required'
         ],[
             'amount.required' => 'Jumlah transaksi wajib diisi.',
             'amount.numeric' => 'Jumlah transaksi harus berupa angka.',
@@ -53,15 +54,18 @@ class FormTransaksi extends Component
             'date' => $this->date,
         ]);
 
-        $budget = budgets::find($budget);
+        $budgetproses = budgets::find($this->budget);
+        $budgetakhir = $budgetproses->total_amount;
 
-        if ($this->type === 'expense') {
-            $budget->total_amount -= $this->amount;
+        if ($this->type === 'pengeluaran') {
+            $budgetakhir -= $this->amount;
         } else {
-            $budget->total_amount += $this->amount;
+            $budgetakhir += $this->amount;
         }
 
-        $budget->save();
+        $budgetproses->total_amount = $budgetakhir; 
+
+        $budgetproses->save();
 
         session()->flash('message', 'Transaksi berhasil ditambahkan.');
         return redirect()->route('transaksi');

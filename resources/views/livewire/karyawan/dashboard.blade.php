@@ -4,7 +4,7 @@
             <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 col-span-4">
                     <p class="text-sm font-medium text-gray-500">Saldo saat ini</p>
-                    <p class="text-3xl font-bold text-cyan-900 mt-1">Rp. {{ number_format($balance->total_amount, 0, ',', '.')}};</p>
+                    <p class="text-3xl font-bold text-cyan-900 mt-1">Rp. {{ number_format($balance, 0, ',', '.')}};</p>
                     <p class="text-xs text-green-500 mt-2">+12% dari kemarin</p>
                 </div>
                 <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50">
