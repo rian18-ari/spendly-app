@@ -62,12 +62,26 @@
                  <label for="pilihan_users" class="block text-sm font-medium text-gray-900">Pilih Karyawan</label>
                  <div class="mt-1">
                      <select type="date" wire:model="pilihan_users" id="pilihan_users" multiple
-                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">>
+                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                            
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                     </select>
+                     @error('pilihan_users')
+                         <span class="text-sm text-red-500">
+                             {{ $message }}
+                         </span>
+                     @enderror
+                 </div>
+             </div>
+             {{-- detail field --}}
+             <div>
+                 <label for="detail" class="block text-sm font-medium text-gray-900">Pilih Karyawan</label>
+                 <div class="mt-1">
+                     <textarea wire:model="detail" id="detail" cols="30" rows="10" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+
+                     </textarea>
                      @error('pilihan_users')
                          <span class="text-sm text-red-500">
                              {{ $message }}

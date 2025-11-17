@@ -23,7 +23,7 @@
                                 class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
                                     class="fa-solid fa-file-excel mr-2"></i> EXCEL</a>
                             {{-- triger modal --}}
-                            <a href="{{ route('transaksi.create') }}"
+                            <a wire:navigate href="{{ route('transaksi.create') }}"
                                 class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2">
                                 <i class="fa-solid fa-plus"></i>Tambah</a>
                         </div>
@@ -64,8 +64,8 @@
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y bg-gray-50">
-                                        @foreach ($transaksi as $item)
-                                            <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
+                                        @forelse ($transaksi as $item)
+                                        <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
 
                                                 <td class="px-5 py-4 sm:px-6">
                                                     <p class="text-gray-900 text-theme-sm">
@@ -92,8 +92,12 @@
                                                     <p class="text-gray-900 text-theme-sm">
                                                         {{ $item->date }}</p>
                                                 </td>
+                                                @empty
+                                                <td class="px-5 py-4">
+                                                    <h1>table kosong nich</h1>
+                                                </td>
                                             </tr>
-                                        @endforeach
+                                            @endforelse
 
                                     </tbody>
                                 </table>

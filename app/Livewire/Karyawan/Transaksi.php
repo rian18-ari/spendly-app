@@ -25,9 +25,10 @@ class Transaksi extends Component
             ->where('user_id', $userId)
             ->pluck('budget_id');
         $totalSaldo = budgets::whereIn('id', $budgetIds)->sum('total_amount');
+        $riwayattransaksi = transaction::where('user_id', $userId)->get();
 
         return view('livewire.karyawan.transaksi', [
-            'transaksi' => Transaction::all(),
+            'transaksi' => $riwayattransaksi,
             'saldo' => $totalSaldo,
         ]);
     }

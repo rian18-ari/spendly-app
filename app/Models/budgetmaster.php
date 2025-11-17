@@ -10,6 +10,7 @@ class budgetmaster extends Model
     protected $fillable = [
         'budget',
         'tahun_anggaran',
-        'detail'
+        'detail',
+        'user_id'
     ];
 }

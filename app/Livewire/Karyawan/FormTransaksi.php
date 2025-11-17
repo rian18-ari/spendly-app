@@ -33,42 +33,54 @@ class FormTransaksi extends Component
         ],[
             'amount.required' => 'Jumlah transaksi wajib diisi.',
             'amount.numeric' => 'Jumlah transaksi harus berupa angka.',
-            'note.required' => 'Catatan wajib diisi.',
-            'note.string' => 'Catatan harus berupa teks.',
+            'note.required' => 'Keterangan wajib diisi.',
+            'note.string' => 'Keterangan harus berupa teks.',
             'date.required' => 'Tanggal wajib diisi.',
             'date.date' => 'Tanggal tidak valid.',
+            'type.required' => 'Harap pilih type',
+            'budget.required' => 'Harap pilih budget'
         ]);
 
         $user = Auth::user();
-        // $this->budget;
-        // dd($budget);
-
-        // Menyimpan data transaksi
-        
-        transaction::create([
-            'user_id' => $user->id,
-            'budget_id' => $this->budget,
-            'amount' => $this->amount,
-            'note' => $this->note,
-            'type' => $this->type,
-            'date' => $this->date,
-        ]);
-
         $budgetproses = budgets::find($this->budget);
         $budgetakhir = $budgetproses->total_amount;
+        // $this->budget;
+        // dd($budgetakhir);
 
-        if ($this->type === 'pengeluaran') {
-            $budgetakhir -= $this->amount;
+        // Menyimpan data transaksi
+
+        if($budgetakhir < $this->amount)
+        {
+            DB::rollBack();
+            session()->flash('error', 'nominal tidak cukup!');
+            return;
         } else {
-            $budgetakhir += $this->amount;
+
+            
+            transaction::create([
+                'user_id' => $user->id,
+                'budget_id' => $this->budget,
+                'amount' => $this->amount,
+                'note' => $this->note,
+                'type' => $this->type,
+                'date' => $this->date,
+            ]);
+            
+            
+            
+            if ($this->type === 'pengeluaran') {
+                $budgetakhir -= $this->amount;
+            } else {
+                $budgetakhir += $this->amount;
+            }
+            
+            $budgetproses->total_amount = $budgetakhir;  
+            
+            $budgetproses->save();
+            
+            session()->flash('message', 'Transaksi berhasil ditambahkan.');
+            return redirect()->route('transaksi');
         }
-
-        $budgetproses->total_amount = $budgetakhir; 
-
-        $budgetproses->save();
-
-        session()->flash('message', 'Transaksi berhasil ditambahkan.');
-        return redirect()->route('transaksi');
     }
 
     public function render()
@@ -76,8 +88,15 @@ class FormTransaksi extends Component
         $datauser = Auth::user();
         $dataid = $datauser->id;
         $budget = DB::table('budget_users')->where('user_id', $dataid)->pluck('budget_id');
-        $pilihanbudget = budgets::where('id', $budget)->get();
+        
         // dd($pilihanbudget);
+        
+        if($budget->isNotEmpty())
+        {
+           $pilihanbudget = budgets::where('id', $budget)->get();
+        } else {
+            $pilihanbudget = null;
+        }
         
         return view('livewire.karyawan.form-transaksi', [
             'pilihanbudget' => $pilihanbudget

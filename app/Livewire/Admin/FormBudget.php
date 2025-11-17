@@ -20,6 +20,7 @@ class FormBudget extends Component
     public $start_date;
     public $end_date;
     public $pilihan_users = [];
+    public $detail;
     // ...
 
     public function mount()
@@ -38,39 +39,41 @@ class FormBudget extends Component
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'pilihan_users' => 'required|array|min:1',
+            'detail' => 'required|string'
         ],[
             'name.required' => 'nama harus di isi!',
             'name.string' => 'nama harus berupa huruf!',
             'total_amount.required' => 'nominal harus di isi!',
             'total_amount.numeric' => 'nominal harus angka!',
             'pilihan_users' => 'pilih karyawan!',
+            'text.required' => 'Harap di isi!'
         ]);
         
         $tahunbudget = Carbon::parse($this->start_date)->year;
         // dd($tahunbudget);
 
         // 2. MULAI TRANSAKSI
-        // DB::beginTransaction(); 
+        DB::beginTransaction(); 
         
-        // try {
+        try {
              // 3. CARI & KUNCI MASTER BUDGET DI DALAM TRY
             $masterBudget = budgetmaster::where('tahun_anggaran', $tahunbudget)
                                         ->lockForUpdate() // Mencegah Double Spending
                                         ->first(); 
 
         //     // 4. GUARD CLAUSE 1: PASTIKAN MASTER BUDGET DITEMUKAN (Mencegah error NULL)
-            // if (!$masterBudget) {
-            //     DB::rollBack();
-            //     session()->flash('error', 'Master Budget untuk tahun ' . $tahunbudget . ' tidak ditemukan!');
-            //     return;
-            // }
+            if (!$masterBudget) {
+                DB::rollBack();
+                session()->flash('error', 'Master Budget untuk tahun ' . $tahunbudget . ' tidak ditemukan!');
+                return;
+            }
 
         //     // 5. GUARD CLAUSE 2: CEK SALDO (Logika Saldo yang Benar)
-            // if ($masterBudget->budget < $this->total_amount) {
-            //     DB::rollBack();
-            //     session()->flash('error', 'Maaf, saldo Master Budget tidak cukup.');
-            //     return;
-            // }
+            if ($masterBudget->budget < $this->total_amount) {
+                DB::rollBack();
+                session()->flash('error', 'Maaf, saldo Master Budget tidak cukup.');
+                return;
+            }
             
         //     // 6. OPERASI 1: PENGURANGAN DAN SIMPAN MASTER BUDGET
             $masterBudget->budget -= $this->total_amount;
@@ -86,6 +89,7 @@ class FormBudget extends Component
                 'total_amount' => $this->total_amount,
                 'start_date' => $this->start_date,
                 'end_date' => $this->end_date,
+                'detail' => $this->detail
             ]);
             // 8. OPERASI 3: RELASI BUDGET USER
             foreach ($this->pilihan_users as $user_id) {
@@ -96,18 +100,18 @@ class FormBudget extends Component
             }
 
             // 9. COMMIT
-            // DB::commit();
+            DB::commit();
             
             session()->flash('message', 'Budget berhasil dialokasikan dan Master Budget dikurangi.');
             return redirect()->route('admin.budget');
             
-        // } catch (\Exception $e) {
-        //     // 10. ROLLBACK TEKNIS
-        //     DB::rollBack();
-        //     // dd($e); // Untuk debugging
-        //     session()->flash('error', 'Terjadi kesalahan sistem yang tidak terduga. Transaksi dibatalkan.');
-        //     return; 
-        // }
+        } catch (\Exception $e) {
+            // 10. ROLLBACK TEKNIS
+            DB::rollBack();
+            // dd($e); // Untuk debugging
+            session()->flash('error', 'Terjadi kesalahan sistem yang tidak terduga. Transaksi dibatalkan.');
+            return; 
+        }
     }
 
     public function render()

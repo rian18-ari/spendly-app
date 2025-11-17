@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('total_amount', 15, 0);
+            $table->text('detail');
             $table->date('start_date');
             $table->date('end_date');
             $table->unsignedBigInteger('user_id');

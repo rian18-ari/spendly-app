@@ -12,7 +12,7 @@ class Transaksi extends Component
     {
         return view('livewire.admin.transaksi',  [
             'transaksi' => transaction::all(),
-            'saldo' => budgets::where('id', 1)->first(),
+            'flowtransaksi' => transaction::all()->count(),
         ]);
     }
 }

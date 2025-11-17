@@ -18,16 +18,30 @@
                      @enderror
                  </div>
              </div>
-             {{-- role --}}
+             {{-- total_amount --}}
              <div>
-                 <label for="date" class="block text-sm font-medium text-gray-900">Jabatan</label>
+                 <label for="total_amount" class="block text-sm font-medium text-gray-900">Saldo Total</label>
                  <div class="mt-1">
-                     <select wire:model="role" id="" required class="block w-full rounded-md border-gray-300">
-                         <option value="karyawan">Karyawan
-                         </option>
-                         <option value="admin">Admin
-                         </option>
-                     </select>
+                      <input type="number" wire:model="total_amount" id="total_amount"
+                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                     @error('name')
+                         <span class="text-sm text-red-500">
+                             {{ $message }}
+                         </span>
+                     @enderror
+                 </div>
+             </div>
+             {{-- detail --}}
+             <div>
+                 <label for="detail" class="block text-sm font-medium text-gray-900">Detail</label>
+                 <div class="mt-1">
+                      <input type="text" wire:model="detail" id="detail"
+                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                     @error('name')
+                         <span class="text-sm text-red-500">
+                             {{ $message }}
+                         </span>
+                     @enderror
                  </div>
              </div>
              <div>

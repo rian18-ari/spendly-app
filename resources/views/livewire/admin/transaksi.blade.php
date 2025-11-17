@@ -1,15 +1,15 @@
 <div>
      <div class="">
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
-            <h3 class="text-xl font-medium text-gray-500 pb-2">Saldo Saat Ini</h3>
-            <h1 class="text-3xl font-medium">Rp. {{ number_format($saldo->total_amount, 0, ',', '.') }};</h1>
+            <h3 class="text-xl font-medium text-gray-500 pb-2">Jumlah Transakai</h3>
+            <h1 class="text-3xl font-medium">{{ $flowtransaksi }}</h1>
         </div>
     </div>
 
     <div class="space-y-5 sm:space-y-6">
         <div class="rounded-2xl border-2 shadow-lg border-gray-200 bg-white dark:border-gray-800">
             <div class="px-6 py-5 flex flex-row">
-                <h3 class="font-bold text-2xl text-gray-800">Pengeluaran</h3><!---->
+                <h3 class="font-bold text-2xl text-gray-800">Detail Transaksi</h3><!---->
                 <div class="justify-end flex flex-1">
                     <div class="text-base text-gray-50 flex flex-row items-center justify-between">
                         <a href=""
@@ -56,11 +56,12 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y bg-gray-50">
-                                    @foreach ($transaksi as $item)
-                                        <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
+                                    <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
+                                            @forelse ($transaksi as $item)
 
                                             <td class="px-5 py-4 sm:px-6">
-                                                <p class="text-gray-900 text-theme-sm">1
+                                                <p class="text-gray-900 text-theme-sm">
+                                                    {{ $loop->iteration }}
                                                 </p>
                                             </td>
                                             <td class="px-5 py-4 sm:px-6">
@@ -83,8 +84,12 @@
                                                 <p class="text-gray-900 text-theme-sm">
                                                     {{ $item->date }}</p>
                                             </td>
+                                            @empty
+                                            <td class=" w-full flex items-center">
+                                                <p class="px-5 py-4 items-center">tabel ini kosong</p>
+                                            </td>
+                                        @endforelse
                                         </tr>
-                                    @endforeach
 
                                 </tbody>
                             </table>

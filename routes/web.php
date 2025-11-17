@@ -58,6 +58,8 @@ Route::prefix('admin')->middleware(['auth','role:admin'])
 // testing account
 // email:rian@example.com
 // password:rian180707
+
+Route::view('/chart' , 'pages/chart')->name('chart');
     
 
 Route::middleware('guest')->group(function () {

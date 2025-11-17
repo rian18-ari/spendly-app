@@ -18,12 +18,13 @@ class Dashboard extends Component
             ->where('user_id', $userId)
             ->pluck('budget_id');
         $totalSaldo = budgets::whereIn('id', $budgetIds)->sum('total_amount');
+        $totalpengeluaran = transaction::where('user_id', $userId);
         
         
         return view('livewire.karyawan.dashboard', [
             'title' => 'Dashboard Karyawan',
             'balance' => $totalSaldo,
-            'total_pengeluaran' => transaction::where('type', 'expense')->sum('amount'),
+            'total_pengeluaran' => $totalpengeluaran->sum('amount'),
 
         ]);
     }

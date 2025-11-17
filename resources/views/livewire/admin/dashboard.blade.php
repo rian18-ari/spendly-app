@@ -2,21 +2,18 @@
     <!-- Contoh Kartu Dashboard -->
     <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 col-span-4">
-            <p class="text-sm font-medium text-gray-500">Saldo saat ini</p>
+            <p class="text-sm font-medium text-gray-500">Saldo saat ini,....</p>
             <p class="text-3xl font-bold text-cyan-900 mt-1">Rp.
-                {{ number_format($budgetmaster->budget, 0, ',', '.') }};</p>
-            <p class="text-xs text-green-500 mt-2">+12% dari kemarin</p>
+                {{ number_format($budget_master->first()?->budget ?? 0 , 0, ',', '.') }};</p>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50">
             <p class="text-sm font-medium text-gray-500">Pengeluaran (Bulan Ini)</p>
             <p class="text-3xl font-bold text-cyan-900 mt-1">Rp. {{ number_format($total_pengeluaran, 0, ',', '.') }};
             </p>
-            <p class="text-xs text-red-500 mt-2">-5% dari bulan lalu</p>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50">
-            <p class="text-sm font-medium text-gray-500">Pengguna Baru</p>
-            <p class="text-3xl font-bold text-cyan-900 mt-1">459</p>
-            <p class="text-xs text-green-500 mt-2">+25% dari minggu lalu</p>
+            <p class="text-sm font-medium text-gray-500">Pengguna Aktif</p>
+            <p class="text-3xl font-bold text-cyan-900 mt-1">{{ $pengguna }}</p>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 col-span-2">
             <p class="text-sm font-medium text-gray-500">Tugas Tertunda</p>

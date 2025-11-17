@@ -31,8 +31,11 @@ class FormBudgetMaster extends Component
 
         ]);
 
+        $user = Auth::user();
+        // dd($user);
+
         BudgetMaster::create([
-            'user_id' => Auth::id(),
+            'user_id' => $user->id,
             'budget' => $this->budget,
             'tahun_anggaran' => $this->tahun_anggaran,
             'detail' => $this->detail,

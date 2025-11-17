@@ -7,7 +7,7 @@
                     <i class="fa-solid fa-plus text-gray-500"></i>
                 </a>
             </div>
-            <h1 class="text-3xl font-medium">Rp. {{ number_format($budget_master[0]->budget, '0', ',', '.') }};</h1>
+            <h1 class="text-3xl font-medium">Rp. {{ number_format($budget_master->first()?->budget ?? 0 , '0', ',', '.') }};</h1>
             <a href="" class="text-sm text-gray-500 mt-2">Detail<i class="fa-solid fa-arrow-right ml-2"></i></a>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
@@ -75,8 +75,8 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y bg-gray-50">
-                                    @foreach ($budgets as $budget)
-                                        <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
+                                    <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
+                                            @forelse ($budgets as $budget)
 
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
@@ -95,8 +95,7 @@
                                             </td>
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
-                                                    <span
-                                                        class="rounded-lg bg-amber-200 w-auto h-auto p-1 border-2 border-amber-300">{{ $budget->end_date }}</span>
+                                                    {{ $budget->end_date }}
                                                 </p>
                                             </td>
                                             <td class="px-5 py-4 sm:px-6 flex flex-row gap-2">
@@ -109,8 +108,12 @@
                                                     <i class="fa-solid fa-eye"></i>
                                                 </button>
                                             </td>
+                                            @empty
+                                            <td>
+                                                <h1 class="px-5 py-4">table ini kosong</h1>
+                                            </td>
+                                            @endforelse
                                         </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -148,7 +151,7 @@
                                             </div>
                                         </div>
                                         <div class="bg-gray-700/25 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                            <button wire:click="deletebudget({{ $budget->id }})" command="close" commandfor="dialog"
+                                            <button wire:click="deletebudget({{ $budget->id ?? 0 }})" command="close" commandfor="dialog"
                                                 class="inline-flex w-full justify-center rounded-lg border-2 border-red-600 bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-red-400 sm:ml-3 sm:w-auto">Ya</button>
                                             <button type="button" command="close" commandfor="dialog"
                                                 class="mt-3 inline-flex w-full justify-center rounded-lg border-2 border-gray-600 bg-gray-500 px-3 py-2 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20 sm:mt-0 sm:w-auto">Batal</button>

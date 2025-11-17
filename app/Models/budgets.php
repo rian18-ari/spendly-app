@@ -10,6 +10,7 @@ class budgets extends Model
         'start_date',
         'end_date',
         'total_amount',
+        'detail',
         'user_id',
         'name',
         'budgetmaster_id'

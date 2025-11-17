@@ -5,11 +5,11 @@
             <h1 class="text-3xl font-medium">{{ $totalkaryawan }}</h1>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
-            <h3 class="text-xl font-medium text-gray-500 pb-2">Karyawan</h3>
+            <h3 class="text-xl font-medium text-gray-500 pb-2">Karyawan Aktif</h3>
             <h1 class="text-3xl font-medium">{{ $jeniskaryawan }}</h1>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
-            <h3 class="text-xl font-medium text-gray-500 pb-2">Admin</h3>
+            <h3 class="text-xl font-medium text-gray-500 pb-2">Admin Aktif</h3>
             <h1 class="text-3xl font-medium">{{ $totaladmin }}</h1>
         </div>
     </div>
@@ -60,10 +60,6 @@
                                         </th>
                                         <th class="px-5 py-3 text-left w-2/11 sm:px-6">
                                             <p class="font-medium text-gray-900 text-theme-xs">
-                                                Status</p>
-                                        </th>
-                                        <th class="px-5 py-3 text-left w-2/11 sm:px-6">
-                                            <p class="font-medium text-gray-900 text-theme-xs">
                                                 Tanggal</p>
                                         </th>
                                     </tr>
@@ -86,12 +82,6 @@
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
                                                     {{ $item->email }}</p>
-                                            </td>
-                                            <td class="px-5 py-4 sm:px-6">
-                                                <p class="text-gray-900 text-theme-sm">
-                                                    <span
-                                                        class="rounded-lg bg-amber-200 w-auto h-auto p-1 border-2 border-amber-300">menunggu</span>
-                                                </p>
                                             </td>
                                             <td class="px-5 py-4 sm:px-6 flex flex-row gap-2">
                                                 <button command="show-modal" commandfor="dialog"
