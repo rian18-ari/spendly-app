@@ -1,6 +1,7 @@
 <div class="p-6 bg-white shadow-xl rounded-lg sm:p-8 border-2">
     <!-- Judul Komponen -->
-    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Ringkasan Data</h1>
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Ringkasan Data{{$value}}</h1>
+
 
     <!-- Tampilkan data dalam Chart -->
     <div class="flex justify-between">

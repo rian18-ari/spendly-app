@@ -14,6 +14,7 @@ class ChartBudget extends Component
     public $chartData = [];
     public $labels = [];
     public $count = [];
+    public $value;
 
     public function mount()
     {
