@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <title>{{ $title ?? 'Spendly-Budget Tracker' }}</title>
     <!-- Memuat Tailwind CSS CDN -->
     @vite('resources/css/app.css')
@@ -73,7 +73,7 @@
                     <i class="fa-solid fa-money-bill-wave mr-2"></i>
                     Transaksi
                 </a>
-                <a href="#"
+                <a href="{{ route('chart')}}"
                     class="flex items-center p-3 text-sm font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-chart-simple mr-2"></i>
                     Statistik
@@ -148,6 +148,9 @@
         <!-- MAIN SCROLLABLE CONTENT AREA -->
         <!-- h-full agar konten utama mengisi sisa tinggi, overflow-y-auto agar konten bisa digulir -->
         <main class="flex-1 p-6 overflow-y-auto scroll-container">
+            <h1 class="text-xl font-semibold text-gray-800 mb-4">
+                @yield('title')
+            </h1>
 
             @yield('content')
 

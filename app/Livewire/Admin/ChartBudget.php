@@ -2,26 +2,24 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\budgetmaster;
 use App\Models\budgets;
-use App\Models\transaction;
-use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class Dashboard extends Component
+class ChartBudget extends Component
 {
-    public $chartLabels = [];
+     public $chartLabels = [];
     public $chartData = [];
-
-    // Judul untuk komponen
-    public $title = 'Visualisasi Pengeluaran Anggaran';
+    public $labels = [];
+    public $count = [];
 
     public function mount()
     {
         // Panggil fungsi untuk mengambil dan memproses data saat komponen dimuat
         $this->loadChartData();
+        $this->chartData();
     }
 
     private function loadChartData()
@@ -38,16 +36,20 @@ class Dashboard extends Component
         $this->chartLabels = $transactions->pluck('name')->toArray();
         $this->chartData = $transactions->pluck('total')->toArray();
     }
+
+    public function chartdata()
+    {
+        $budget = DB::table('transactions')
+                        ->select('note', DB::raw('COUNT(*) as count'))
+                        ->groupBy('note')
+                        ->get();
+
+        $this->labels = $budget->pluck('note')->toArray();
+        $this->count = $budget->pluck('count')->toArray();
+    }
     
     public function render()
     {
-        return view('livewire.admin.dashboard' ,[
-            // 'user' => Auth::user()->id,
-            'budget_master' => budgetmaster::all(),
-            'total_pengeluaran' => transaction::where('type', 'pengeluaran')->sum('amount'),
-            'pengguna' => User::all()->count(),
-            'dataChart' => budgets::all()
-            // dd($budgetmaster)
-        ]);
+        return view('livewire.admin.chart-budget');
     }
 }

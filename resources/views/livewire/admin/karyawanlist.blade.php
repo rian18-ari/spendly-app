@@ -23,10 +23,12 @@
                         <a href=""
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
                                 class="fa-solid fa-file-pdf mr-2"></i> PDF</a>
-                        <a href=""
+                        <button wire:click.prevent="export" type="button"
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
-                                class="fa-solid fa-file-excel mr-2"></i> EXCEL</a>
-                        {{-- triger modal --}}
+                                class="fa-solid fa-file-excel mr-2"></i> EXCEL</button>
+                        <div wire:loading class="text-gray-500">
+                            Sedang mengekspor... Tunggu sebentar!
+                        </div>
                         <a wire:navigate href="{{ route('admin.tambahkaryawan') }}"
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2">
                             <i class="fa-solid fa-plus"></i>Tambah</a>
@@ -88,7 +90,8 @@
                                                     class="rounded-lg bg-red-500 w-auto h-auto p-2 text-white border-2 border-red-600">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
-                                                <button wire:navigate href="{{ route('admin.editkaryawan', ['id' => $item->id]) }}"
+                                                <button wire:navigate
+                                                    href="{{ route('admin.editkaryawan', ['id' => $item->id]) }}"
                                                     class="rounded-lg bg-yellow-500 w-auto h-auto p-2 text-white border-2 border-yellow-600">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </button>
@@ -126,13 +129,15 @@
                                                     <h3 id="dialog-title" class="text-base font-semibold text-black">
                                                         Hapus Data Karyawan</h3>
                                                     <div class="mt-2">
-                                                        <p class="text-sm text-gray-500">Yakin mau hapus data karyawan ini?</p>
+                                                        <p class="text-sm text-gray-500">Yakin mau hapus data karyawan
+                                                            ini?</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="bg-gray-700/25 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                            <button wire:click="deleteKaryawan({{ $item->id }})" command="close" commandfor="dialog"
+                                            <button wire:click="deleteKaryawan({{ $item->id }})" command="close"
+                                                commandfor="dialog"
                                                 class="inline-flex w-full justify-center rounded-lg border-2 border-red-600 bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-red-400 sm:ml-3 sm:w-auto">Ya</button>
                                             <button type="button" command="close" commandfor="dialog"
                                                 class="mt-3 inline-flex w-full justify-center rounded-lg border-2 border-gray-600 bg-gray-500 px-3 py-2 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20 sm:mt-0 sm:w-auto">Batal</button>

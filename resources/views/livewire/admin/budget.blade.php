@@ -75,8 +75,8 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y bg-gray-50">
+                                    @forelse ($budgets as $budget)
                                     <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
-                                            @forelse ($budgets as $budget)
 
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
@@ -112,8 +112,8 @@
                                             <td>
                                                 <h1 class="px-5 py-4">table ini kosong</h1>
                                             </td>
-                                            @endforelse
                                         </tr>
+                                        @endforelse
                                 </tbody>
                             </table>
                         </div>

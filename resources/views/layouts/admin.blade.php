@@ -8,6 +8,7 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>{{ $title ?? 'Spendly-Budget Tracker' }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     @vite('resources/css/app.css')
     @livewireStyles
     <style>
@@ -80,7 +81,7 @@
                     <i class="fa-solid fa-money-bill-wave mr-2"></i>
                     Transaksi
                 </a>
-                <a href="#"
+                <a href="{{ route('chartadmin') }}"
                     class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
                     <i class="fa-solid fa-chart-simple mr-2"></i>
                     Statistik
@@ -119,9 +120,9 @@
                     <el-menu anchor="bottom end" popover
                         class="w-56 origin-top-right rounded-lg border-2 bg-amber-50 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                         <div class="py-1">
-                            {{-- @auth
-                            <p class="block px-4 py-2 ">{{ Auth::user()->name }}</p> --}}
-                            {{-- @endauth
+                            @auth
+                            <p class="block px-4 py-2 ">{{ Auth::user()->name }}</p>
+                            @endauth
                             <hr class="mx-auto w-50 border-1 mb-2">
                                 <p
                                     class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">
@@ -133,7 +134,7 @@
                                 <span
                                     class="rounded-lg bg-yellow-200 w-auto h-auto p-1 border-yellow-300 border-2">Karyawan</span>
                                 </p>
-                                @endif --}}
+                                @endif
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">Support</a>
                             <a href="#"
@@ -164,8 +165,20 @@
     </div>
 
     <!-- JavaScript untuk Toggle Sidebar di Mobile -->
-    @livewireScripts
+   
     <script>
+        document.addEventListener('livewire:navigated', () => {
+            // Re-initialize semua yang perlu di-load ulang
+            if (typeof Alpine !== 'undefined') {
+                Alpine.discoverUninitializedComponents(el => {
+                    Alpine.initializeComponent(el)
+                });
+            }
+            
+            // Trigger window resize buat chart/layout
+            window.dispatchEvent(new Event('resize'));
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             const sidebar = document.getElementById('sidebar');
             const openBtn = document.getElementById('openSidebar');
@@ -197,6 +210,7 @@
     </script>
     {{-- tailwind script --}}
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+     @livewireScripts
 </body>
 
 </html>

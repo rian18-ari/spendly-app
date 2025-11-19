@@ -1,5 +1,5 @@
 <div>
-     <div class="">
+     <div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
             <h3 class="text-xl font-medium text-gray-500 pb-2">Jumlah Transakai</h3>
             <h1 class="text-3xl font-medium">{{ $flowtransaksi }}</h1>
@@ -15,9 +15,12 @@
                         <a href=""
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
                                 class="fa-solid fa-file-pdf mr-2"></i> PDF</a>
-                        <a href=""
+                        <button wire:click.prevent="export"
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
-                                class="fa-solid fa-file-excel mr-2"></i> EXCEL</a>
+                                class="fa-solid fa-file-excel mr-2"></i> EXCEL</button>
+                                <div wire:loading class="text-gray-500">
+                                    Sedang mengekspor... Tunggu sebentar! 
+                                </div>
                     </div>
                 </div>
             </div>
@@ -56,8 +59,8 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y bg-gray-50">
+                                    @forelse ($transaksi as $item)
                                     <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
-                                            @forelse ($transaksi as $item)
 
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
@@ -88,8 +91,8 @@
                                             <td class=" w-full flex items-center">
                                                 <p class="px-5 py-4 items-center">tabel ini kosong</p>
                                             </td>
-                                        @endforelse
                                         </tr>
+                                        @endforelse
 
                                 </tbody>
                             </table>

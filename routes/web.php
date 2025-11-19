@@ -34,6 +34,7 @@ Route::prefix('karyawan')->middleware(['auth','role:karyawan'])
     Route::view('/dashboard', 'pages/karyawan/dashboard')->name('dashboard');
     Route::view('/transaksi','pages/karyawan/transaksi' )->name('transaksi');
     Route::view('/transaksi/create', 'pages/karyawan/form-transaksi')->name('transaksi.create');
+    Route::view('/chart' , 'pages/karyawan/chart')->name('chart');
 });
 // testing account
 // email:jawz08@example.com
@@ -54,12 +55,12 @@ Route::prefix('admin')->middleware(['auth','role:admin'])
     Route::view('/budget/edit/{id}', 'pages/admin/editbudget')->name('admin.editbudget');
     Route::view('/budget/tambah', 'pages/admin/formbudget')->name('admin.tambahbudget');
     Route::get('/budget/anggaran', FormBudgetMaster::class)->name('admin.budget_master');
+    Route::view('/chart', 'pages/admin/chart-budget')->name('chartadmin');
 });
 // testing account
 // email:rian@example.com
 // password:rian180707
 
-Route::view('/chart' , 'pages/chart')->name('chart');
     
 
 Route::middleware('guest')->group(function () {
