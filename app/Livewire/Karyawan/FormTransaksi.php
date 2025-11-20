@@ -93,7 +93,7 @@ class FormTransaksi extends Component
         
         if($budget->isNotEmpty())
         {
-           $pilihanbudget = budgets::where('id', $budget)->get();
+           $pilihanbudget = budgets::whereIn('id', $budget)->get();
         } else {
             $pilihanbudget = null;
         }
