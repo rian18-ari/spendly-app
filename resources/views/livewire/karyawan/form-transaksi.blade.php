@@ -3,14 +3,6 @@
          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Form Tambah Transaksi</h2>
      </div>
 
-     {{-- error message --}}
-     <div>
-         @if (session('error'))
-             <span class="text-sm text-red-500">
-                 {{ session('error') }}
-             </span>
-         @endif
-     </div>
      {{-- form start --}}
      <form class="gap-x-4" wire:submit.prevent="store">
          <div>
@@ -80,6 +72,14 @@
                          </span>
                      @enderror
                  </div>
+                 {{-- error message --}}
+                <div>
+                    @if (session('error'))
+                        <span class="text-sm text-red-500">
+                            {{ session('error') }}
+                        </span>
+                    @endif
+                </div>
              </div>
              {{-- tanggal --}}
              <div>

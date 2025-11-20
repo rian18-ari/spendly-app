@@ -46,7 +46,7 @@ class FormBudget extends Component
             'total_amount.required' => 'nominal harus di isi!',
             'total_amount.numeric' => 'nominal harus angka!',
             'pilihan_users' => 'pilih karyawan!',
-            'text.required' => 'Harap di isi!'
+            'detail.required' => 'Harap di isi!'
         ]);
         
         $tahunbudget = Carbon::parse($this->start_date)->year;
@@ -71,7 +71,7 @@ class FormBudget extends Component
         //     // 5. GUARD CLAUSE 2: CEK SALDO (Logika Saldo yang Benar)
             if ($masterBudget->budget < $this->total_amount) {
                 DB::rollBack();
-                session()->flash('error', 'Maaf, saldo Master Budget tidak cukup.');
+                session()->flash('error', 'Maaf, saldo budget ' . $tahunbudget . ' tidak cukup.');
                 return;
             }
             

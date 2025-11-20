@@ -29,6 +29,14 @@
                              {{ $message }}
                          </span>
                      @enderror
+                      {{-- error message --}}
+                <div>
+                    @if (session('error'))
+                        <span class="text-sm text-red-500">
+                            {{ session('error') }}
+                        </span>
+                    @endif
+                </div>
                  </div>
              </div>
              {{-- start date --}}
@@ -37,7 +45,7 @@
                  <div class="mt-1">
                      <input type="date" wire:model="start_date" id="start_date"
                          class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                     @error('password')
+                     @error('amount')
                          <span class="text-sm text-red-500">
                              {{ $message }}
                          </span>
@@ -77,12 +85,12 @@
              </div>
              {{-- detail field --}}
              <div>
-                 <label for="detail" class="block text-sm font-medium text-gray-900">Pilih Karyawan</label>
+                 <label for="detail" class="block text-sm font-medium text-gray-900">Detail</label>
                  <div class="mt-1">
                      <textarea wire:model="detail" id="detail" cols="30" rows="10" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
 
                      </textarea>
-                     @error('pilihan_users')
+                     @error('detail')
                          <span class="text-sm text-red-500">
                              {{ $message }}
                          </span>

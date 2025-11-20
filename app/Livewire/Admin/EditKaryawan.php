@@ -9,6 +9,8 @@ class EditKaryawan extends Component
 {
     public $name;
     public $role;
+    public $no_hp;
+    public $email;
     
     public ?User $user = null;
 
@@ -19,6 +21,8 @@ class EditKaryawan extends Component
         
         $this->name = $this->user->name; 
         $this->role = $this->user->role;
+        $this->no_hp = $this->user->no_hp;
+        $this->email = $this->user->email;
     }
 
     public function update()

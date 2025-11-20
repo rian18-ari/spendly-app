@@ -7,7 +7,7 @@
                     <p class="text-3xl font-bold text-cyan-900 mt-1">Rp. {{ number_format($balance, 0, ',', '.')}};</p>
                     <p class="text-xs text-green-500 mt-2">+12% dari kemarin</p>
                 </div>
-                <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50">
+                <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 col-span-2">
                     <p class="text-sm font-medium text-gray-500">Pengeluaran (Bulan Ini)</p>
                     <p class="text-3xl font-bold text-cyan-900 mt-1">Rp. {{ number_format($total_pengeluaran, 0, ',', '.') }};</p>
                     <p class="text-xs text-red-500 mt-2">-5% dari bulan lalu</p>
@@ -17,7 +17,7 @@
                     <p class="text-3xl font-bold text-cyan-900 mt-1">459</p>
                     <p class="text-xs text-green-500 mt-2">+25% dari minggu lalu</p>
                 </div>
-                <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 col-span-2">
+                <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50">
                     <p class="text-sm font-medium text-gray-500">Tugas Tertunda</p>
                     <p class="text-3xl font-bold text-cyan-900 mt-1">14</p>
                     <p class="text-xs text-red-500 mt-2">Perlu segera diselesaikan</p>

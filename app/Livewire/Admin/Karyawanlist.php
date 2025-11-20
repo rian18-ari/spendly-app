@@ -9,10 +9,8 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Karyawanlist extends Component
 {
-    public function export()
-    {
-        return Excel::download(new UsersExport, 'users-data-'.now()->timestamp.'.xlsx');
-    }
+    public $selected_id;
+
     
     public function render()
     {
@@ -23,15 +21,27 @@ class Karyawanlist extends Component
             'totaladmin' => User::where('role', 'admin')->count(),
         ]);
     }
-
-    public function deleteKaryawan($id)
+    
+    public function export()
     {
-        $karyawan = User::find($id);
+        return Excel::download(new UsersExport, 'data-pegawai-'.now()->timestamp.'.xlsx');
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->selected_id = $id;
+    }
+
+    public function deleteKaryawan()
+    {
+
+        $karyawan = User::find($this->selected_id);
         if ($karyawan) {
             $karyawan->delete();
             session()->flash('message', 'Karyawan berhasil dihapus.');
         } else {
             session()->flash('error', 'Karyawan tidak ditemukan.');
         }
+        $this->selected_id = null; 
     }
 }

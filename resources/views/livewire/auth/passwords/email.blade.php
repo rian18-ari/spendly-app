@@ -3,7 +3,7 @@
 <div>
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <a href="{{ route('home') }}">
-            <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
+            <img src="{{asset('asset/img/spendly-high-resolution-logo-transparent.png')}}" alt="spendly logo" class="w-auto h-16 mx-auto">
         </a>
 
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
@@ -11,8 +11,8 @@
         </h2>
     </div>
 
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+    <div class="mt-8 sm:mx-auto border-2 rounded-lg sm:w-full sm:max-w-md">
+        <div class="px-4 py-8 bg-orange-200 shadow sm:rounded-lg sm:px-10">
             @if ($emailSentMessage)
                 <div class="rounded-md bg-green-50 p-4">
                     <div class="flex">
@@ -33,7 +33,7 @@
                 <form wire:submit.prevent="sendResetPasswordLink">
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
-                            Email address
+                            Alamat Email
                         </label>
 
                         <div class="mt-1 rounded-md shadow-sm">
@@ -48,7 +48,7 @@
                     <div class="mt-6">
                         <span class="block w-full rounded-md shadow-sm">
                             <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                                Send password reset link
+                                Kirim Link Reset Password
                             </button>
                         </span>
                     </div>

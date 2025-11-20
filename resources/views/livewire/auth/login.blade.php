@@ -24,7 +24,7 @@
             <form wire:submit.prevent="authenticate">
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
-                        Email address
+                        Alamat Email
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -54,13 +54,13 @@
                     <div class="flex items-center">
                         <input wire:model.lazy="remember" id="remember" type="checkbox" class="form-checkbox w-4 h-4 text-indigo-600 transition duration-150 ease-in-out" />
                         <label for="remember" class="block ml-2 text-sm text-gray-900 leading-5">
-                            Remember
+                            Ingat Saya
                         </label>
                     </div>
 
                     <div class="text-sm leading-5">
                         <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                            Forgot your password?
+                            Lupa Password?
                         </a>
                     </div>
                 </div>

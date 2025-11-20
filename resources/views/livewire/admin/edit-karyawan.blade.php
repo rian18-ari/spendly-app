@@ -18,11 +18,37 @@
                      @enderror
                  </div>
              </div>
+             {{-- no hp --}}
+             <div>
+                 <label for="no_hp" class="block text-sm font-medium text-gray-900">No HP</label>
+                 <div class="mt-1">
+                     <input type="text" wire:model="no_hp" id="no_hp"
+                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                     @error('no_hp')
+                         <span class="text-sm text-red-500">
+                             {{ $message }}
+                         </span>
+                     @enderror
+                 </div>
+             </div>
+             {{-- email --}}
+             <div>
+                 <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
+                 <div class="mt-1">
+                     <input type="text" wire:model="email" id="email"
+                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                     @error('email')
+                         <span class="text-sm text-red-500">
+                             {{ $message }}
+                         </span>
+                     @enderror
+                 </div>
+             </div>
              {{-- role --}}
              <div>
-                 <label for="date" class="block text-sm font-medium text-gray-900">Jabatan</label>
+                 <label for="role" class="block text-sm font-medium text-gray-900">Jabatan</label>
                  <div class="mt-1">
-                     <select wire:model="role" id="" required class="block w-full rounded-md border-gray-300">
+                     <select wire:model="role" id="role" required class="block w-full rounded-md border-gray-300">
                          <option value="karyawan">Karyawan
                          </option>
                          <option value="admin">Admin

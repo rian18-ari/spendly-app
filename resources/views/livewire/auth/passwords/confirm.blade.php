@@ -3,14 +3,14 @@
 <div>
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <a href="{{ route('home') }}">
-            <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
+            <img src="{{asset('asset/img/spendly-high-resolution-logo-transparent.png')}}" alt="spendly logo" class="w-auto h-16 mx-auto">
         </a>
 
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
-            Confirm your password
+            Konfirmasi Password
         </h2>
         <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
-            Please confirm your password before continuing
+            Konfirmasi password sebelum melanjutkan
         </p>
     </div>
 
@@ -34,7 +34,7 @@
                 <div class="flex items-center justify-end mt-6">
                     <div class="text-sm leading-5">
                         <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                            Forgot your password?
+                            Lupa Password?
                         </a>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="mt-6">
                     <span class="block w-full rounded-md shadow-sm">
                         <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                            Confirm password
+                            Konfirmasi Password
                         </button>
                     </span>
                 </div>

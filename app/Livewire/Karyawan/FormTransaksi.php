@@ -49,7 +49,7 @@ class FormTransaksi extends Component
 
         // Menyimpan data transaksi
 
-        if($budgetakhir < $this->amount)
+        if($this->type === 'pengeluaran' && $budgetakhir < $this->amount)
         {
             DB::rollBack();
             session()->flash('error', 'nominal tidak cukup!');

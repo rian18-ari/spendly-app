@@ -20,8 +20,8 @@ return new class extends Migration
             $table->enum('status', ['menunggu', 'di setujui', 'di tolak']);
             $table->unsignedBigInteger('budget_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('budget_id')->references('id')->on('budgets');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('budget_id')->references('id')->on('budgets')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

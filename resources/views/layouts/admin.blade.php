@@ -156,11 +156,11 @@
             </h1>
             @yield('content')
 
+            
             <!-- Footer -->
             <footer class="text-center p-4 text-gray-500 text-sm border-t mt-6">
                 &copy; 2025 Spendly. Hak Cipta Dilindungi.
             </footer>
-
         </main>
     </div>
 

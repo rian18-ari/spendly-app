@@ -2,7 +2,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
             <div class="flex justify-between">
-                <h3 class="text-xl font-medium text-gray-500 pb-2">Budget</h3>
+                <h3 class="text-xl font-medium text-gray-500 pb-2">Saldo Budget</h3>
                 <a href="{{route('admin.budget_master')}}">
                     <i class="fa-solid fa-plus text-gray-500"></i>
                 </a>
@@ -11,27 +11,26 @@
             <a href="" class="text-sm text-gray-500 mt-2">Detail<i class="fa-solid fa-arrow-right ml-2"></i></a>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
-            <h3 class="text-xl font-medium text-gray-500 pb-2">Karyawan</h3>
-            {{-- <h1 class="text-3xl font-medium">{{ $jeniskaryawan }}</h1> --}}
-        </div>
-        <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
-            <h3 class="text-xl font-medium text-gray-500 pb-2">Admin</h3>
-            {{-- <h1 class="text-3xl font-medium">{{ $totaladmin }}</h1> --}}
+            <h3 class="text-xl font-medium text-gray-500 pb-2">Budget Aktif</h3>
+            <h1 class="text-3xl font-medium">{{ $totalBudget }}</h1>
         </div>
     </div>
 
     <div class="space-y-5 sm:space-y-6">
         <div class="rounded-2xl border-2 shadow-lg border-gray-200 bg-white dark:border-gray-800">
             <div class="px-6 py-5 flex flex-row">
-                <h3 class="font-bold text-2xl text-gray-800">Data Budget</h3><!---->
+                <h3 class="font-bold text-2xl text-gray-800">Data Budget</h3>
+                <div wire:loading class="text-gray-500 mx-5 mt-2">
+                                    Mohon Tunggu sebentar.... 
+                                </div><!---->
                 <div class="justify-end flex flex-1">
                     <div class="text-base text-gray-50 flex flex-row items-center justify-between">
                         <a href=""
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
                                 class="fa-solid fa-file-pdf mr-2"></i> PDF</a>
-                        <a href=""
+                        <button wire:click="export"
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
-                                class="fa-solid fa-file-excel mr-2"></i> EXCEL</a>
+                                class="fa-solid fa-file-excel mr-2"></i> EXCEL</button>
                         {{-- triger modal --}}
                         <a wire:navigate href="{{ route('admin.tambahbudget') }}"
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2">

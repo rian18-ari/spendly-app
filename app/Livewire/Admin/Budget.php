@@ -2,13 +2,20 @@
 
 namespace App\Livewire\Admin;
 
+use App\Exports\BudgetExport;
 use App\Models\BudgetMaster;
 use App\Models\budgetmaster as ModelsBudgetmaster;
 use App\Models\budgets;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Budget extends Component
 {
+     public function export()
+    {
+        return Excel::download(new BudgetExport, 'data-budget-'.now()->timestamp.'.xlsx');
+    }
+    
     public function deletebudget($id)
     {
         dd($id);
@@ -27,7 +34,7 @@ class Budget extends Component
             'title' => 'Budget Management',
             'budgets' => budgets::all(),
             'budget_master' => ModelsBudgetmaster::all(),
-            // 'budget_master' => BudgetMaster::all(),
+            'totalBudget' => budgets::all()->count(),
         ])->extends('layouts.admin');
     }
 }

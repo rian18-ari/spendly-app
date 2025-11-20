@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin;
 
-use App\Exports\UsersExport;
+use App\Exports\TransaksiExport;
 use App\Models\budgets;
 use App\Models\transaction;
 use Livewire\Component;
@@ -12,7 +12,7 @@ class Transaksi extends Component
 {
     public function export()
     {
-        return Excel::download(new UsersExport, 'users-data-'.now()->timestamp.'.xlsx');
+        return Excel::download(new TransaksiExport, 'data-transaksi-'.now()->timestamp.'.xlsx');
     }
     
     public function render()

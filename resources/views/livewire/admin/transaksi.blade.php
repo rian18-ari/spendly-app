@@ -9,7 +9,10 @@
     <div class="space-y-5 sm:space-y-6">
         <div class="rounded-2xl border-2 shadow-lg border-gray-200 bg-white dark:border-gray-800">
             <div class="px-6 py-5 flex flex-row">
-                <h3 class="font-bold text-2xl text-gray-800">Detail Transaksi</h3><!---->
+                <h3 class="font-bold text-2xl text-gray-800">Detail Transaksi</h3>
+                 <div wire:loading class="text-gray-500 mx-5 mt-2">
+                                    Mohon Tunggu sebentar.... 
+                                </div>
                 <div class="justify-end flex flex-1">
                     <div class="text-base text-gray-50 flex flex-row items-center justify-between">
                         <a href=""
@@ -18,9 +21,6 @@
                         <button wire:click.prevent="export"
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
                                 class="fa-solid fa-file-excel mr-2"></i> EXCEL</button>
-                                <div wire:loading class="text-gray-500">
-                                    Sedang mengekspor... Tunggu sebentar! 
-                                </div>
                     </div>
                 </div>
             </div>
