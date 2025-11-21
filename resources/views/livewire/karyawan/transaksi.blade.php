@@ -6,7 +6,7 @@
         <div class="">       
             <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
                 <h3 class="text-xl font-medium text-gray-500 pb-2">Saldo Saat Ini</h3>
-                <h1 class="text-3xl font-medium">Rp. {{ number_format($saldo, 0, ',', '.') }};</h1>
+                <h1 class="text-3xl font-medium">Rp. {{ number_format($saldo, 0, ',', '.') }}</h1>
             </div>
         </div>
         
@@ -16,13 +16,6 @@
                     <h3 class="font-bold text-2xl text-gray-800">Pengeluaran</h3><!---->
                     <div class="justify-end flex flex-1">
                         <div class="text-base text-gray-50 flex flex-row items-center justify-between">
-                            <a href=""
-                                class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
-                                    class="fa-solid fa-file-pdf mr-2"></i> PDF</a>
-                            <a href=""
-                                class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
-                                    class="fa-solid fa-file-excel mr-2"></i> EXCEL</a>
-                            {{-- triger modal --}}
                             <a wire:navigate href="{{ route('transaksi.create') }}"
                                 class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2">
                                 <i class="fa-solid fa-plus"></i>Tambah</a>
@@ -36,28 +29,28 @@
                                 <table class="min-w-full">
                                     <thead>
                                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                                            <th class="px-5 py-3 text-left w-3/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-1/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">No.
                                                 </p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-3/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-3/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">
                                                     Keterangan
                                                 </p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-2/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">
                                                     Jenis</p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-2/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">Rp.
                                                 </p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-2/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">
                                                     Status</p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-2/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">
                                                     Tanggal</p>
                                             </th>
@@ -84,17 +77,26 @@
                                                 </td>
                                                 <td class="px-5 py-4 sm:px-6">
                                                     <p class="text-gray-900 text-theme-sm">
+                                                        @if ($item->status == 'menunggu')
                                                         <span
                                                             class="rounded-lg bg-amber-200 w-auto h-auto p-1 border-2 border-amber-300">menunggu</span>
+                                                        @elseif ($item->status == 'di setujui')
+                                                        <span
+                                                            class="rounded-lg bg-green-200 w-auto h-auto p-1 border-2 border-green-300">disetujui</span>
+                                                        @elseif ($item->status == 'di tolak')
+                                                        <span
+                                                            class="rounded-lg bg-red-200 w-auto h-auto p-1 border-2 border-red-300">ditolak</span>
+                                                        @endif
                                                     </p>
                                                 </td>
                                                 <td class="px-5 py-4 sm:px-6">
                                                     <p class="text-gray-900 text-theme-sm">
                                                         {{ $item->date }}</p>
                                                 </td>
-                                                @empty
-                                                <td class="px-5 py-4">
-                                                    <h1>table masih kosong</h1>
+                                            @empty
+                                            <tr>
+                                                <td colspan="6" class="px-5 py-4 text-center">
+                                                    <p class="text-gray-500">table ini kosong</p>
                                                 </td>
                                             </tr>
                                             @endforelse

@@ -1,6 +1,6 @@
  <div class="border-2 rounded-lg w-auto h-auto p-6 bg-amber-50">
      <div>
-         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Form Tambah Karyawan</h2>
+         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Tambah Karyawan</h2>
      </div>
      {{-- form start --}}
      <form class="gap-x-4" wire:submit.prevent="store">
@@ -46,7 +46,7 @@
              </div>
              {{-- no hp --}}
              <div>
-                 <label for="no_hp" class="block text-sm font-medium text-gray-900">Password</label>
+                 <label for="no_hp" class="block text-sm font-medium text-gray-900">No. HP</label>
                  <div class="mt-1">
                      <input type="text" wire:model="no_hp" id="no_hp"
                          class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">

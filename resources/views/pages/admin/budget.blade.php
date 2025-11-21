@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Budget Management')
+@section('title', 'Budget')
 @section('content')
  @livewire('admin.budget')
 @endsection

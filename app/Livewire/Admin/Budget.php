@@ -18,7 +18,7 @@ class Budget extends Component
     
     public function deletebudget($id)
     {
-        dd($id);
+
         $budget = budgets::find($id);
         if ($budget) {
             $budget->delete();

@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class ChartBudget extends Component
 {
-     public $chartLabels = [];
+    public $chartLabels = [];
     public $chartData = [];
     public $labels = [];
     public $count = [];

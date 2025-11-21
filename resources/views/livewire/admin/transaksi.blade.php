@@ -1,7 +1,7 @@
 <div>
      <div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
-            <h3 class="text-xl font-medium text-gray-500 pb-2">Jumlah Transakai</h3>
+            <h3 class="text-xl font-medium text-gray-500 pb-2">Jumlah Transaksi</h3>
             <h1 class="text-3xl font-medium">{{ $flowtransaksi }}</h1>
         </div>
     </div>
@@ -15,9 +15,6 @@
                                 </div>
                 <div class="justify-end flex flex-1">
                     <div class="text-base text-gray-50 flex flex-row items-center justify-between">
-                        <a href=""
-                            class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
-                                class="fa-solid fa-file-pdf mr-2"></i> PDF</a>
                         <button wire:click.prevent="export"
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
                                 class="fa-solid fa-file-excel mr-2"></i> EXCEL</button>
@@ -31,28 +28,28 @@
                             <table class="min-w-full">
                                 <thead>
                                     <tr class="border-b border-gray-200 dark:border-gray-700">
-                                        <th class="px-5 py-3 text-left w-3/11 sm:px-6">
+                                        <th class="px-5 py-3 text-left w-1/12 sm:px-6">
                                             <p class="font-medium text-gray-900 text-theme-xs">No.
                                             </p>
                                         </th>
-                                        <th class="px-5 py-3 text-left w-3/11 sm:px-6">
+                                        <th class="px-5 py-3 text-left w-3/12 sm:px-6">
                                             <p class="font-medium text-gray-900 text-theme-xs">
                                                 Keterangan
                                             </p>
                                         </th>
-                                        <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                        <th class="px-5 py-3 text-left w-2/12 sm:px-6">
                                             <p class="font-medium text-gray-900 text-theme-xs">
                                                 Jenis</p>
                                         </th>
-                                        <th class="px-5 py-3 text-left w-2/11 sm:px-6">
-                                            <p class="font-medium text-gray-900 text-theme-xs">Rp.
+                                        <th class="px-5 py-3 text-left w-2/12 sm:px-6">
+                                            <p class="font-medium text-gray-900 text-theme-xs">Nominal
                                             </p>
                                         </th>
-                                        <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                        <th class="px-5 py-3 text-left w-2/12 sm:px-6">
                                             <p class="font-medium text-gray-900 text-theme-xs">
                                                 Status</p>
                                         </th>
-                                        <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                        <th class="px-5 py-3 text-left w-2/12 sm:px-6">
                                             <p class="font-medium text-gray-900 text-theme-xs">
                                                 Tanggal</p>
                                         </th>
@@ -75,7 +72,7 @@
                                             </td>
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
-                                                    Rp. {{ number_format($item->amount, 0, ',', '.') }};</p>
+                                                    Rp. {{ number_format($item->amount, 0, ',', '.') }}</p>
                                             </td>
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
@@ -87,9 +84,10 @@
                                                 <p class="text-gray-900 text-theme-sm">
                                                     {{ $item->date }}</p>
                                             </td>
-                                            @empty
-                                            <td class=" w-full flex items-center">
-                                                <p class="px-5 py-4 items-center">tabel ini kosong</p>
+                                        @empty
+                                        <tr>
+                                            <td colspan="6" class="px-5 py-4 text-center">
+                                                <p class="text-gray-500">table ini kosong</p>
                                             </td>
                                         </tr>
                                         @endforelse

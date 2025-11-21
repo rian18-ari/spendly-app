@@ -26,9 +26,6 @@
                         </div>
                 <div class="justify-end flex flex-1">
                     <div class="text-base text-gray-50 flex flex-row items-center justify-between">
-                        <a href=""
-                            class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
-                                class="fa-solid fa-file-pdf mr-2"></i> PDF</a>
                         <button wire:click.prevent="export" type="button"
                             class="px-2 py-3 border-2 rounded-lg bg-indigo-500 w-auto h-9 items-center flex align-middle mr-2"><i
                                 class="fa-solid fa-file-excel mr-2"></i> EXCEL</button>
@@ -47,32 +44,32 @@
                                 <table class="min-w-full">
                                     <thead>
                                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                                            <th class="px-5 py-3 text-left w-3/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-1/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">No.
                                                 </p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-3/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-3/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">
                                                     Nama Karyawan
                                                 </p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-2/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">
                                                     Jabatan</p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-3/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">
                                                     Email
                                                 </p>
                                             </th>
-                                            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+                                            <th class="px-5 py-3 text-left w-3/12 sm:px-6">
                                                 <p class="font-medium text-gray-900 text-theme-xs">
-                                                    Tanggal</p>
+                                                    </p>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y bg-gray-50">
-                                        @foreach ($karyawans as $item)
+                                        @forelse ($karyawans as $item)
                                             <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-200">
 
                                                 <td class="px-5 py-4 sm:px-6">
@@ -102,7 +99,13 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="px-5 py-4 text-center">
+                                                    <p class="text-gray-500">table ini kosong</p>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -113,7 +116,7 @@
 
                                 <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                                        <div x-show="showModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-25 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-75 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-75 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="relative transform overflow-hidden rounded-lg border-2 bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                                        <div x-show="showModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-25 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-25 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-25 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-25 translate-y-4 sm:translate-y-0 sm:scale-95" class="relative transform overflow-hidden rounded-lg border-2 bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                                             <div class="bg-orange-200 px-4 pb-4 pt-5 sm:p-6 sm:pb-4 border-b">
                                                 <div class="sm:flex sm:items-start">
                                                     <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">

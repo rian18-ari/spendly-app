@@ -1,24 +1,15 @@
-<div 
-    class="bg-white p-6 rounded-xl shadow-lg border-2"
-    wire:ignore
-    {{-- Alpine.js inisialisasi dengan data dari Livewire --}}
-    x-data="transactionChartData(@js($labels), @js($data))"
-    x-init="initChart()"
-    
-    {{-- Listener Alpine.js untuk Event Livewire.
-         Sekarang Alpine juga mendengarkan 'title' untuk mengupdate judul. --}}
-    @chart-data-updated.window="updateChart($event.detail.labels, $event.detail.data, $event.detail.title)"
->
+<div class="bg-white p-6 rounded-xl shadow-lg border-2">
     
     <div class="flex justify-between items-center mb-4">
-        {{-- JUDUL, menggunakan Livewire property dan x-ref untuk update Alpine --}}
-        <h3 class="text-xl font-extrabold text-gray-800 border-b pb-2" x-ref="chartTitle">
+        {{-- JUDUL, Updated by Livewire directly --}}
+        <h3 class="text-xl font-extrabold text-gray-800 border-b pb-2">
             {{ $chartTitle }}
         </h3>
 
         {{-- >>> Filter Dropdown Livewire <<< --}}
         <select 
             wire:model.live="filterDays"
+            wire:change="loadChartData"
             class="border border-gray-300 rounded-lg text-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
         >
             <option value="7">7 Hari Terakhir</option>
@@ -28,7 +19,14 @@
         </select>
     </div>
 
-    <div class="relative h-64 sm:h-80">
+    {{-- Chart Container with wire:ignore to prevent Livewire from re-rendering the canvas --}}
+    <div 
+        class="relative h-64 sm:h-80"
+        wire:ignore
+        x-data="transactionChartData(@js($labels), @js($data))"
+        x-init="initChart()"
+        @chart-data-updated.window="updateChart($event.detail.labels, $event.detail.data)"
+    >
         <canvas x-ref="myChart"></canvas>
     </div>
 
@@ -103,13 +101,10 @@
                 },
                 
                 // Fungsi untuk MENGUPDATE CHART secara dinamis
-                updateChart(newLabels, newData, newTitle) {
+                updateChart(newLabels, newData) {
                     // Update data Alpine state
                     this.labels = newLabels;
                     this.data = newData;
-                    
-                    // >>> Update Judul (Menggunakan x-ref) <<<
-                    this.$refs.chartTitle.textContent = newTitle;
                     
                     // Update data Chart.js
                     if (this.chart) {

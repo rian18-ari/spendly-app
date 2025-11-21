@@ -1,6 +1,6 @@
  <div class="border-2 rounded-lg w-auto h-auto p-6 bg-amber-50">
      <div>
-         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Form Tambah Budget</h2>
+         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Tambah Budget</h2>
      </div>
      {{-- form start --}}
      <form class="gap-x-4" wire:submit.prevent="store">

@@ -1,5 +1,5 @@
 @extends('layouts.karyawan')
-@section('title', 'Grafik Pengeluaran')
+@section('title', 'Statistik')
 @section('content')
     @livewire('karyawan.chart-karyawan')
 @endsection

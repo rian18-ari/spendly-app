@@ -13,9 +13,9 @@ class ChartKaryawan extends Component
     public $labels = [];   
     public $data = [];     
     public $userId = null;
-    public $chartTitle = 'Tren Pengeluaran 7 Hari Terakhir';
+    public $chartTitle;
     
-    public $filterDays = 7; 
+    public $filterDays = 14;
 
     public function mount()
     {
@@ -61,11 +61,6 @@ class ChartKaryawan extends Component
             'data' => $this->data,
             'title' => $this->chartTitle, 
         ]);
-    }
-    
-    public function updatedFilterDays()
-    {
-        $this->loadChartData();
     }
 
     public function render()

@@ -42,11 +42,11 @@
 
     <!-- 1. FIXED SIDEBAR (Warna: Biru Tua) -->
     <nav id="sidebar"
-        class="fixed inset-y-0 left-0 z-50 w-64 bg-transparent transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:flex-shrink-0">
-        <div class="m-4 rounded-lg border-2 h-[600px] flex flex-col bg-orange-200 lg:shadow-2xl">
+        class="fixed inset-y-0 left-0 z-50 w-50 bg-orange-200 border-r-2 rounded-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:flex-shrink-0">
+        {{-- <div class="m-4 rounded-lg border-2 h-[600px] flex flex-col bg-orange-200 lg:shadow-2xl"> --}}
 
             <!-- Header Sidebar -->
-            <div class="p-6 flex items-center justify-between rounded-lg border-b-2 bg-amber-50">
+            <div class="p-2 mx-2 my-4 border-2 h-22 flex items-center justify-between rounded-lg bg-gray-50">
                 <img src="{{ asset('asset/img/spendly-high-resolution-logo-transparent.png') }}" alt=""
                     class="w-70">
                 <!-- Tombol Tutup Sidebar (Hanya Mobile) -->
@@ -60,34 +60,34 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="p-4">
+            <div class="p-4 h-full">
                 <a wire:navigate href="{{ route('dashboardadmin') }}"
-                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:bg-cyan-900 hover:text-orange-200 text-xl">
                     <i class="fa-solid fa-display mr-2"></i>
                     Beranda
                 </a>
                 <a wire:navigate href="{{ route('admin.budget') }}"
-                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:bg-cyan-900 hover:text-orange-200 text-xl">
                     <i class="fa-solid fa-sack-dollar mr-2"></i>
                     Budget
                 </a>
                 <a wire:navigate href="{{ route('admin.karyawan') }}"
-                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:bg-cyan-900 hover:text-orange-200 text-xl">
                     <i class="fa-solid fa-users mr-2"></i>
                     Karyawan
                 </a>
                 <a wire:navigate href="{{ route('transaksiadmin') }}"
-                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:bg-cyan-900 hover:text-orange-200 text-xl">
                     <i class="fa-solid fa-money-bill-wave mr-2"></i>
                     Transaksi
                 </a>
                 <a href="{{ route('chartadmin') }}"
-                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:border-2 text-xl">
+                    class="flex items-center p-3 font-medium text-cyan-900 rounded-lg transition duration-150 hover:bg-cyan-900 hover:text-orange-200 text-xl">
                     <i class="fa-solid fa-chart-simple mr-2"></i>
                     Statistik
                 </a>
             </div>
-        </div>
+        {{-- </div> --}}
     </nav>
 
     <!-- 2. MAIN CONTENT WRAPPER -->
@@ -109,11 +109,9 @@
                 {{-- dropdown menu --}}
                 <el-dropdown class="inline-block">
                     <button
-                        class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
-                        <div class="">
-                            <img src="https://placehold.co/150x150/1f2937/ffffff?text=FOTO"
-                                onerror="this.src='https://placehold.co/150x150/1f2937/ffffff?text=FOTO'"
-                                alt="Foto Profil Ari" class="mx-auto rounded-full w-11 h-11">
+                        class="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
+                        <div class="ring-2 ring-gray-600 w-auto h-auto p-1 bg-gray-300 rounded-full">
+                            <i class="fa-solid fa-user text-gray-600 text-2xl"></i>
                         </div>
                     </button>
 
@@ -135,10 +133,6 @@
                                     class="rounded-lg bg-yellow-200 w-auto h-auto p-1 border-yellow-300 border-2">Karyawan</span>
                                 </p>
                                 @endif
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">Support</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-70000 focus:bg-white/5 focus:text-white focus:outline-hidden">License</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit"

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Karyawan List')
+@section('title', 'Karyawan')
 @section('content')
    @livewire('admin.karyawanlist')
 @endsection
