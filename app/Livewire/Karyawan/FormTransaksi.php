@@ -44,10 +44,6 @@ class FormTransaksi extends Component
         $user = Auth::user();
         $budgetproses = budgets::find($this->budget);
         $budgetakhir = $budgetproses->total_amount;
-        // $this->budget;
-        // dd($budgetakhir);
-
-        // Menyimpan data transaksi
 
         if($this->type === 'pengeluaran' && $budgetakhir < $this->amount)
         {
@@ -88,8 +84,6 @@ class FormTransaksi extends Component
         $datauser = Auth::user();
         $dataid = $datauser->id;
         $budget = DB::table('budget_users')->where('user_id', $dataid)->pluck('budget_id')->toArray();
-        
-        // dd($pilihanbudget);
         
          $pilihanbudget = !empty($budget)
         ? budgets::whereIn('id', $budget)->get()

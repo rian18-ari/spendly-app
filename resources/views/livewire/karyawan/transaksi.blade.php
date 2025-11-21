@@ -94,7 +94,7 @@
                                                 </td>
                                                 @empty
                                                 <td class="px-5 py-4">
-                                                    <h1>table kosong nich</h1>
+                                                    <h1>table masih kosong</h1>
                                                 </td>
                                             </tr>
                                             @endforelse

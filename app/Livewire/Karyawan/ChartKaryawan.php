@@ -27,16 +27,11 @@ class ChartKaryawan extends Component
     {
         $userId = $this->userId;
         
-        // Memastikan tipe data Integer (untuk mencegah error string - int)
         $filterData = (int) $this->filterDays; 
         
         $endDate = Carbon::today();
-        
-        // Rentang tanggal yang benar (misal: 7 - 1 = 6 hari ke belakang)
         $startDate = Carbon::today()->subDays($filterData - 1); 
         // dd($filterData);
-
-        // Logika Query untuk Tren Harian
         $dailyTransactions = transaction::query()
             ->where('user_id', $userId) 
             ->whereBetween('date', [$startDate, $endDate])
@@ -52,7 +47,6 @@ class ChartKaryawan extends Component
         $this->labels = [];
         $this->data = [];
 
-        // Loop untuk mengisi array untuk setiap hari dalam rentang
         for ($date = $startDate->copy(); $date <= $endDate; $date->addDay()) {
             $dateString = $date->toDateString();
             $this->labels[] = $date->format('d/M'); 
@@ -60,10 +54,8 @@ class ChartKaryawan extends Component
             $this->data[] = (int) $dailyAmount; 
         }
         
-        // Update Judul Chart Sesuai Filter
         $this->chartTitle = 'Tren Pengeluaran ' . $this->filterDays . ' Hari Terakhir';
 
-        // Mengirim event ke Alpine.js
         $this->dispatch('chart-data-updated', [
             'labels' => $this->labels,
             'data' => $this->data,

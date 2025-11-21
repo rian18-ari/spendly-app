@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <title>Spendly | Budget Tracker</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -175,9 +176,9 @@
                     </el-popover>
                 </div>
 
-                <a href="#" class="text-sm/6 font-semibold text-cyan-900">Features</a>
-                <a href="#" class="text-sm/6 font-semibold text-cyan-900">Marketplace</a>
-                <a href="#" class="text-sm/6 font-semibold text-cyan-900">Company</a>
+                <a href="#tentang" class="text-sm/6 font-semibold text-cyan-900">Tentang Kami</a>
+                <a href="#fitur" class="text-sm/6 font-semibold text-cyan-900">Fitur Unggulan</a>
+                <a href="#hubungi" class="text-sm/6 font-semibold text-cyan-900">Hubungi Kami</a>
             </el-popover-group>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a href="{{route('login')}}" class="text-sm/6 font-semibold text-cyan-900">Log in <span
@@ -267,158 +268,169 @@
 
 
     {{-- start hero section --}}
-    <section class="m-4 p-4 bg-gray-50 shadow rounded-lg vh-100 flex items-start justify-start">
-        <div class="flex flex-col lg:flex-row w-full items-center">
-            <div class="flex flex-col justify-start items-start mt-10 lg:mt-50 mb-4 lg:mb-40 py-4 w-full lg:w-1/2">
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 items-start text-cyan-900">Track Keuangan
+    {{-- start hero section --}}
+    <section class="bg-gray-50 shadow-sm min-h-screen flex items-center justify-center">
+        <div class="container mx-auto px-4 flex flex-col lg:flex-row w-full items-center">
+            <div class="flex flex-col justify-start items-start mb-10 lg:mb-0 py-4 w-full lg:w-1/2" data-aos="fade-up" data-aos-duration="1000">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-cyan-900 leading-tight">Track Keuangan
                     dengan mudah & cermat !</h2>
-                <p class="mb-4 items-start text-cyan-700">permudah track anggaran dengan pelacakan real time !</p>
+                <p class="mb-8 text-lg text-cyan-700">Permudah track anggaran dengan pelacakan real time dan laporan yang akurat.</p>
                 <a href="/dashboard">
-                    <button class="px-4 py-2 bg-cyan-900 text-gray-50 rounded hover:bg-blue-600">Click Me</button>
+                    <button class="px-6 py-3 bg-cyan-900 text-white rounded-lg hover:bg-cyan-800 transition duration-300 shadow-lg">Mulai Sekarang</button>
                 </a>
             </div>
-            <div
-                class="max-w-md mx-auto lg:max-w-xl xl:max-w-2xl flex justify-center items-center align-items-center mt-6 lg:mt-0 lg:ml-20 p-4 w-full lg:w-1/2">
+            <div class="w-full lg:w-1/2 flex justify-center items-center p-4" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                 {{-- gambar nanti disini --}}
-                <svg class="w-full h-auto max-w-sm sm:max-w-md lg:max-w-full text-cyan-900" fill="none"
+                <svg class="w-full h-auto max-w-md lg:max-w-lg text-cyan-900" fill="none"
                     stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true">
-                    {{-- contoh icon dari heroicons --}}
-                    {{-- <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path> --}}
-                    {{-- atau pake icon dari iconpack --}}
                     <x-icon.iconpack></x-icon.iconpack>
                 </svg>
             </div>
         </div>
     </section>
     {{-- end hero section --}}
+    {{-- end hero section --}}
 
     {{-- start about section --}}
-    <section class="m-4 p-4 bg-gray-50 shadow rounded-lg vh-100 ">
-        <h1 class="text-center text-5xl md:text-7xl mb-10 md:mb-15 mt-10 text-cyan-900">Tentang</h1>
-        {{-- start card --}}
-        <div
-            class="flex flex-col lg:flex-row justify-evenly items-center lg:items-start space-y-6 lg:space-y-0 lg:space-x-6">
-            {{-- start card 01 --}}
-            <div class="card w-full sm:w-96 bg-white shadow-lg rounded-lg p-6 text-center border-2 bg-amber-50">
-                <h2 class="text-2xl font-bold mb-4 text-center text-cyan-900">Teruji dan Terpercaya</h2>
-                <p class="mb-4 text-center text-cyan-900">Kami telah membantu ... bisnis mencapai .... Kami didukung
-                    oleh ....</p>
-                <button class="px-4 py-2 bg-cyan-900 text-gray-50 rounded hover:bg-blue-600">Pelajari Lebih
-                    Lanjut</button>
+    {{-- start about section --}}
+    <section class="py-20 bg-white" id="tentang">
+        <div class="container mx-auto px-4">
+            <h1 class="text-center text-4xl md:text-5xl font-bold mb-16 text-cyan-900" data-aos="fade-up">Tentang Kami</h1>
+            {{-- start card --}}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {{-- start card 01 --}}
+                <div class="bg-amber-50 shadow-lg rounded-xl p-8 text-center border-2 transform hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <h2 class="text-2xl font-bold mb-4 text-cyan-900">Teruji dan Terpercaya</h2>
+                    <p class="mb-6 text-cyan-700">Kami telah membantu ribuan bisnis mencapai stabilitas finansial dengan sistem yang teruji.</p>
+                    <button class="px-4 py-2 bg-cyan-900 text-white rounded hover:bg-cyan-800 transition">Pelajari Lebih Lanjut</button>
+                </div>
+                {{-- start card 02 --}}
+                <div class="bg-amber-50 shadow-lg rounded-xl p-8 text-center border-2 transform hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <h2 class="text-2xl font-bold mb-4 text-cyan-900">Solusi Yang Memukau</h2>
+                    <p class="mb-6 text-cyan-700">Membantu pelacakan uang perusahaan dengan "real time" dan visualisasi data yang menarik.</p>
+                    <button class="px-4 py-2 bg-cyan-900 text-white rounded hover:bg-cyan-800 transition">Pelajari Lebih Lanjut</button>
+                </div>
+                {{-- start card 03 --}}
+                <div class="bg-amber-50 shadow-lg rounded-xl p-8 text-center border-2 transform hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <h2 class="text-2xl font-bold mb-4 text-cyan-900">Dukungan Sepenuh Hati</h2>
+                    <p class="mb-6 text-cyan-700">Tim Customer Service 24/7 yang siap membantu anda kapanpun anda membutuhkan.</p>
+                    <button class="px-4 py-2 bg-cyan-900 text-white rounded hover:bg-cyan-800 transition">Pelajari Lebih Lanjut</button>
+                </div>
             </div>
-            {{-- start card 02 --}}
-            <div class="card w-full sm:w-96 bg-white shadow-lg rounded-lg p-6 text-center border-2 bg-amber-50">
-                <h2 class="text-2xl font-bold mb-4 text-center text-cyan-900">Solusi Yang Memukau</h2>
-                <p class="mb-4 text-center text-cyan-900">Membantu Pelacakan uang perusahaaan dengan "real time".</p>
-                <button class="px-4 py-2 bg-cyan-900 text-gray-50 rounded hover:bg-blue-600">Pelajari Lebih
-                    Lanjut</button>
-            </div>
-            {{-- start card 03 --}}
-            <div class="card w-full sm:w-96 bg-white shadow-lg rounded-lg p-6 text-center border-2 bg-amber-50">
-                <h2 class="text-2xl font-bold mb-4 text-center text-cyan-900">Dukungan Sepenuh Hati</h2>
-                <p class="mb-4 text-center text-cyan-900">Tim Customer Service 24/7 yang siap membantu anda</p>
-                <button class="px-4 py-2 bg-cyan-900 text-gray-50 rounded hover:bg-blue-600">Pelajari Lebih
-                    Lanjut</button>
-            </div>
+            {{-- end card --}}
         </div>
-        {{-- end card --}}
     </section>
     {{-- end about section --}}
 
     {{-- start fitur section --}}
-    <section class="m-4 p-4 bg-gray-50 shadow rounded-lg vh-100 ">
-        <h1 class="text-center text-5xl md:text-7xl mb-10 md:mb-15 mt-10 text-cyan-900">Fitur</h1>
-        {{-- start card --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {{-- start card 01 (Pelacakan Anggaran) --}}
-            <div
-                class="card w-full lg:w-full h-auto lg:h-96 bg-white shadow-lg rounded-lg p-6 text-center col-span-1 md:col-span-2 lg:col-span-2 flex flex-col justify-end items-center border-2">
-                <div class="w-full">
-                    {{-- gambar nanti disini --}}
-
-                </div>
-                <div class="py-1 w-full">
-                    <h2 class="text-2xl font-bold mb-4 text-center text-cyan-900">Pelacakan Anggaran</h2>
-                    <p class="mb-4 text-center text-cyan-900">Buat anggaran, lacak pengeluaran, dan capai tujuan
-                        keuangan Anda dengan mudah.</p>
-                    <button class="px-4 py-2 bg-cyan-900 text-gray-50 rounded hover:bg-blue-600">Pelajari Lebih
-                        Lanjut</button>
-                </div>
-            </div>
-            {{-- start card 02 (Laporan Keuangan) --}}
-            <div
-                class="card w-full lg:w-full h-auto lg:h-96 bg-white shadow-lg rounded-lg p-6 text-center row-span-2 md:col-span-2 lg:col-span-1 flex flex-col justify-end items-center border-2">
-                <div class="w-full">
-                    {{-- gambar nanti disini --}}
-
-                </div>
-                <div class="py-1 w-full">
-                    <h2 class="text-2xl font-bold mb-4 text-center text-cyan-900">Laporan Keuangan</h2>
-                    <p class="mb-4 text-center text-cyan-900">Dapatkan wawasan mendalam tentang kebiasaan belanja Anda
-                        dengan laporan yang mudah dipahami.</p>
-                    <button class="px-4 py-2 bg-cyan-900 text-gray-50 rounded hover:bg-blue-600">Pelajari Lebih
-                        Lanjut</button>
-                </div>
-            </div>
-            {{-- start card 03 (Sinkronisasi Akun) --}}
-            <div
-                class="card w-full h-auto lg:h-96 bg-white shadow-lg rounded-lg p-6 col-span-1 lg:col-span-4 flex flex-col lg:flex-row items-center border-2">
-                <div class="flex flex-col justify-center text-center py-4 w-full lg:w-[40%]">
-                    <h2 class="text-2xl font-bold mb-4 text-center text-cyan-900">Sinkronisasi Akun</h2>
-                    <p class="mb-4 text-center text-cyan-900">Hubungkan akun bank dan kartu kredit Anda untuk pelacakan
-                        otomatis dan real-time.</p>
-                    <div class="text-center">
-                        <button class="px-4 py-2 bg-cyan-900 text-gray-50 rounded hover:bg-blue-600 w-auto">Pelajari
-                            Lebih Lanjut</button>
+    {{-- start fitur section --}}
+    <section class="py-20 bg-gray-50" id="fitur">
+        <div class="container mx-auto px-4">
+            <h1 class="text-center text-4xl md:text-5xl font-bold mb-16 text-cyan-900" data-aos="fade-up">Fitur Unggulan</h1>
+            {{-- start card --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {{-- start card 01 (Pelacakan Anggaran) --}}
+                <div class="bg-white shadow-lg rounded-xl p-8 text-center border-2 transform hover:-translate-y-2 transition duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="mb-6 flex justify-center">
+                             {{-- Icon placeholder --}}
+                             <div class="h-16 w-16 bg-cyan-100 rounded-full flex items-center justify-center text-cyan-900">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                             </div>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 text-cyan-900">Pelacakan Anggaran</h2>
+                        <p class="mb-6 text-cyan-700">Buat anggaran, lacak pengeluaran, dan capai tujuan keuangan Anda dengan mudah dan terstruktur.</p>
                     </div>
+                    <button class="px-4 py-2 bg-cyan-900 text-white rounded hover:bg-cyan-800 transition w-full">Pelajari Lebih Lanjut</button>
                 </div>
-                <div class="w-full lg:w-[60%] flex justify-center items-center mt-4 lg:mt-0"> {{-- gambar nanti disini --}}
-
+                {{-- start card 02 (Laporan Keuangan) --}}
+                <div class="bg-white shadow-lg rounded-xl p-8 text-center border-2 transform hover:-translate-y-2 transition duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="mb-6 flex justify-center">
+                             {{-- Icon placeholder --}}
+                             <div class="h-16 w-16 bg-cyan-100 rounded-full flex items-center justify-center text-cyan-900">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"></path></svg>
+                             </div>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 text-cyan-900">Laporan Keuangan</h2>
+                        <p class="mb-6 text-cyan-700">Dapatkan wawasan mendalam tentang kebiasaan belanja Anda dengan laporan visual yang mudah dipahami.</p>
+                    </div>
+                    <button class="px-4 py-2 bg-cyan-900 text-white rounded hover:bg-cyan-800 transition w-full">Pelajari Lebih Lanjut</button>
+                </div>
+                {{-- start card 03 (Sinkronisasi Akun) --}}
+                <div class="bg-white shadow-lg rounded-xl p-8 text-center border-2 transform hover:-translate-y-2 transition duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="mb-6 flex justify-center">
+                             {{-- Icon placeholder --}}
+                             <div class="h-16 w-16 bg-cyan-100 rounded-full flex items-center justify-center text-cyan-900">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                             </div>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 text-cyan-900">Sinkronisasi Akun</h2>
+                        <p class="mb-6 text-cyan-700">Hubungkan akun bank dan kartu kredit Anda untuk pelacakan otomatis dan real-time tanpa ribet.</p>
+                    </div>
+                    <button class="px-4 py-2 bg-cyan-900 text-white rounded hover:bg-cyan-800 transition w-full">Pelajari Lebih Lanjut</button>
                 </div>
             </div>
+            {{-- end card --}}
         </div>
-        {{-- end card --}}
     </section>
     {{-- end fitur section --}}
 
 
     {{-- start contact section --}}
-    <section class="m-4 p-4 bg-gray-50 shadow rounded-lg vh-100 flex flex-col justify-center items-center">
-        <h1 class="text-center text-5xl md:text-7xl mb-10 mt-10 text-cyan-900">Contact</h1>
-        <div
-            class="m-4 p-4 w-full max-w-2xl flex flex-col md:flex-row justify-start items-start shadow-lg rounded-lg border">
-            {{-- start form --}}
-            <form action="" class="w-full md:w-1/2 p-6 rounded-lg ">
-                <div class="mb-4">
-                    <label for="name" class="block text-cyan-900 font-bold mb-2">Name</label>
-                    <input type="text" id="name" name="name"
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    {{-- start contact section --}}
+    <section class="py-20 bg-white" id="hubungi">
+        <div class="container mx-auto px-4">
+            <h1 class="text-center text-4xl md:text-5xl font-bold mb-16 text-cyan-900" data-aos="fade-up">Hubungi Kami</h1>
+            <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden flex flex-col border-2 rounded-lg md:flex-row" data-aos="zoom-in" data-aos-duration="1000">
+                {{-- start form --}}
+                <div class="w-full md:w-1/2 p-8 md:p-12">
+                    <form action="" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-cyan-900 font-bold mb-2">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 transition" placeholder="Masukkan nama anda">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-cyan-900 font-bold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 transition" placeholder="nama@email.com">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-cyan-900 font-bold mb-2">Pesan</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 transition" placeholder="Tulis pesan anda disini..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-cyan-900 text-white font-bold rounded-lg hover:bg-cyan-800 transition duration-300">Kirim Pesan</button>
+                    </form>
                 </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-cyan-900 font-bold mb-2">Email</label>
-                    <input type="email" id="email" name="email"
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="w-full md:w-1/2 bg-cyan-900 p-8 md:p-12 flex flex-col justify-center items-center text-white">
+                    <h3 class="text-2xl font-bold mb-4">Info Kontak</h3>
+                    <p class="mb-6 text-center text-cyan-100">Punya pertanyaan? Jangan ragu untuk menghubungi kami.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>+62 123 4567 890</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v9a2 2 0 002 2z"></path></svg>
+                            <span>support@spendly.com</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Jakarta, Indonesia</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="message" class="block text-cyan-900 font-bold mb-2">Message</label>
-                    <textarea id="message" name="message" rows="4"
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                </div>
-                <button type="submit" class="px-4 py-2 bg-cyan-900 text-gray-50 rounded hover:bg-blue-600">Send
-                    Message</button>
-            </form>
-            <div class="w-full md:w-1/2 flex justify-center items-center p-6"> {{-- gambar/info kontak nanti disini --}}
-
             </div>
         </div>
     </section>
+    {{-- end contact section --}}
     {{-- end contact section --}}
 
 
     {{-- start footer --}}
     <footer class="bg-white rounded-lg">
-        <div class="bg-gray-50 text-center p-4 rounded-lg m-4 shadow text-cyan-900">
+        <div class="bg-gray-50 text-center p-4 rounded-lg border-2 m-4 shadow text-cyan-900">
             <p>&copy; 2025 Finance Tracker. All rights reserved.</p>
             <p>made with love by rian fikri hafiz</p>
         </div>
@@ -428,6 +440,10 @@
 
     {{-- script --}}
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
