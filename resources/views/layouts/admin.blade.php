@@ -38,19 +38,18 @@
     </style>
 </head>
 
-<body class="flex h-screen overflow-hidden">
+<body class="flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
 
     <!-- 1. FIXED SIDEBAR (Warna: Biru Tua) -->
-    <nav id="sidebar"
-        class="fixed inset-y-0 left-0 z-50 w-50 bg-orange-200 border-r-2 rounded-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:flex-shrink-0">
-        {{-- <div class="m-4 rounded-lg border-2 h-[600px] flex flex-col bg-orange-200 lg:shadow-2xl"> --}}
+    <nav :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+        class="fixed inset-y-0 left-0 z-50 w-50 bg-orange-200 border-r-2 rounded-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:flex-shrink-0 -translate-x-full">
 
             <!-- Header Sidebar -->
             <div class="p-2 mx-2 my-4 border-2 h-22 flex items-center justify-between rounded-lg bg-gray-50">
                 <img src="{{ asset('asset/img/spendly-high-resolution-logo-transparent.png') }}" alt=""
                     class="w-70">
                 <!-- Tombol Tutup Sidebar (Hanya Mobile) -->
-                <button id="closeSidebar" class="lg:hidden text-cyan-900 hover:text-indigo-400 focus:outline-none">
+                <button @click="sidebarOpen = false" class="lg:hidden text-cyan-900 hover:text-indigo-400 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
@@ -87,8 +86,14 @@
                     Statistik
                 </a>
             </div>
-        {{-- </div> --}}
     </nav>
+
+    <!-- 2. MAIN CONTENT WRAPPER -->
+    <!-- Overlay for mobile -->
+    <div x-show="sidebarOpen" @click="sidebarOpen = false" x-transition:enter="transition-opacity ease-linear duration-300"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-25"
+        x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-25"
+        x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-900 bg-opacity-50 opacity-25 z-40 lg:hidden"></div>
 
     <!-- 2. MAIN CONTENT WRAPPER -->
     <div class="flex flex-col flex-1 bg-transparent transition-all duration-300">
@@ -97,7 +102,7 @@
         <header class="shadow-md p-4 sticky top-0 z-40 m-4 rounded-lg border-2 bg-amber-100">
             <div class="flex justify-between items-center">
                 <!-- Tombol Buka Sidebar (Hanya Mobile) -->
-                <button id="openSidebar"
+                <button @click="sidebarOpen = true"
                     class="lg:hidden p-2 text-gray-600 rounded-lg hover:bg-gray-100 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -105,7 +110,7 @@
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
-                <h2 class="text-xl font-semibold text-gray-800">Ringkasan Utama (admin)</h2>
+                <h2 class="text-xl font-semibold text-gray-800">@yield('title')</h2>
                 {{-- dropdown menu --}}
                 <el-dropdown class="inline-block">
                     <button
@@ -145,12 +150,7 @@
         </header>
 
         <main class="flex-1 p-6 overflow-y-auto scroll-container">
-            <h1 class="text-xl font-semibold text-gray-800 mb-4">
-                @yield('title')
-            </h1>
             @yield('content')
-
-            
             <!-- Footer -->
             <footer class="text-center p-4 text-gray-500 text-sm border-t mt-6">
                 &copy; 2025 Spendly. Hak Cipta Dilindungi.
@@ -171,35 +171,6 @@
             
             // Trigger window resize buat chart/layout
             window.dispatchEvent(new Event('resize'));
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const sidebar = document.getElementById('sidebar');
-            const openBtn = document.getElementById('openSidebar');
-            const closeBtn = document.getElementById('closeSidebar');
-
-            // Fungsi untuk membuka sidebar (di mobile)
-            openBtn.addEventListener('click', () => {
-                // Hapus kelas -translate-x-full dan tambahkan kelas translate-x-0
-                sidebar.classList.remove('-translate-x-full');
-                sidebar.classList.add('translate-x-0');
-            });
-
-            // Fungsi untuk menutup sidebar (di mobile)
-            closeBtn.addEventListener('click', () => {
-                // Hapus kelas translate-x-0 dan tambahkan kelas -translate-x-full
-                sidebar.classList.remove('translate-x-0');
-                sidebar.classList.add('-translate-x-full');
-            });
-
-            // Opsional: Tutup sidebar jika mengklik di luar sidebar (overlay)
-            document.querySelector('main').addEventListener('click', (e) => {
-                // Hanya tutup jika berada di mode mobile dan sidebar terbuka
-                if (window.innerWidth < 1024 && sidebar.classList.contains('translate-x-0')) {
-                    sidebar.classList.remove('translate-x-0');
-                    sidebar.classList.add('-translate-x-full');
-                }
-            });
         });
     </script>
     {{-- tailwind script --}}

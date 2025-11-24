@@ -17,7 +17,7 @@
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 ">
             <p class="text-sm font-medium text-gray-500">Budget Aktif</p>
-            <p class="text-3xl font-bold text-cyan-900 mt-1">14</p>
+            <p class="text-3xl font-bold text-cyan-900 mt-1">{{ $budgetAktif }}</p>
         </div>
     </div>
 

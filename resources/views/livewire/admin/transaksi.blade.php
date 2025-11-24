@@ -1,8 +1,20 @@
 <div>
-     <div>
+     <div  class="grid grid-cols-4 gap-4">
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 w-auto mb-6">
             <h3 class="text-xl font-medium text-gray-500 pb-2">Jumlah Transaksi</h3>
             <h1 class="text-3xl font-medium">{{ $flowtransaksi }}</h1>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg border-2 bg-green-200 w-auto mb-6">
+            <h3 class="text-xl font-medium text-green-500 pb-2">Di setujui</h3>
+            <h1 class="text-3xl font-medium">{{ $disetujui }}</h1>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg border-2 bg-red-200 w-auto mb-6">
+            <h3 class="text-xl font-medium text-red-500 pb-2">Di tolak</h3>
+            <h1 class="text-3xl font-medium">{{ $ditolak }}</h1>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-200 w-auto mb-6">
+            <h3 class="text-xl font-medium text-amber-500 pb-2">Menunggu</h3>
+            <h1 class="text-3xl font-medium">{{ $menunggu }}</h1>
         </div>
     </div>
 
@@ -53,6 +65,10 @@
                                             <p class="font-medium text-gray-900 text-theme-xs">
                                                 Tanggal</p>
                                         </th>
+                                        <th class="px-5 py-3 text-left w-2/12 sm:px-6">
+                                            <p class="font-medium text-gray-900 text-theme-xs">
+                                                Aksi</p>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y bg-gray-50">
@@ -76,13 +92,24 @@
                                             </td>
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
-                                                    <span
-                                                        class="rounded-lg bg-amber-200 w-auto h-auto p-1 border-2 border-amber-300">menunggu</span>
-                                                </p>
+                                                        @if ($item->status == 'menunggu')
+                                                        <span
+                                                            class="rounded-lg bg-amber-200 w-auto h-auto p-1 border-2 border-amber-300">menunggu</span>
+                                                        @elseif ($item->status == 'di setujui')
+                                                        <span
+                                                            class="rounded-lg bg-green-200 w-auto h-auto p-1 border-2 border-green-300">disetujui</span>
+                                                        @elseif ($item->status == 'di tolak')
+                                                        <span
+                                                            class="rounded-lg bg-red-200 w-auto h-auto p-1 border-2 border-red-300">ditolak</span>
+                                                        @endif
+                                                    </p>
                                             </td>
                                             <td class="px-5 py-4 sm:px-6">
                                                 <p class="text-gray-900 text-theme-sm">
                                                     {{ $item->date }}</p>
+                                            </td>
+                                            <td class="px-5 py-4 sm:px-6">
+                                                    <a href="{{ route('admin.edittransaksi', ['id' => $item->id]) }}"><i class="fa-solid fa-eye"></i></a>
                                             </td>
                                         @empty
                                         <tr>

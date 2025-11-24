@@ -46,7 +46,8 @@ class Dashboard extends Component
             'budget_master' => budgetmaster::all(),
             'total_pengeluaran' => transaction::where('type', 'pengeluaran')->sum('amount'),
             'pengguna' => User::all()->count(),
-            'dataChart' => budgets::all()
+            'dataChart' => budgets::all(),
+            'budgetAktif' => budgets::all()->count(),
             // dd($budgetmaster)
         ]);
     }

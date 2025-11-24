@@ -20,6 +20,9 @@ class Transaksi extends Component
         return view('livewire.admin.transaksi',  [
             'transaksi' => transaction::all(),
             'flowtransaksi' => transaction::all()->count(),
+            'ditolak' => transaction::where('status', 'di tolak')->count(),
+            'disetujui' => transaction::where('status', 'di setujui')->count(),
+            'menunggu' => transaction::where('status', 'menunggu')->count(),
         ]);
     }
 }

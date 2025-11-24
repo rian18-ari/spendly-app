@@ -60,6 +60,9 @@ Route::prefix('admin')->middleware(['auth','role:admin'])
 // testing account
 // email:rian@example.com
 // password:rian180707
+Route::get('/transaksi/edit/{id}', function ($id) {
+    return view('pages.admin.edittransaksi', compact('id'));
+})->name('admin.edittransaksi');
 
     
 
