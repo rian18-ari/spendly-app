@@ -12,8 +12,8 @@
                 </div>
                 <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 col-span-2">
                     <p class="text-sm font-medium text-gray-500">Pengeluaran Terbesar</p>
-                    <p class="text-3xl font-bold text-cyan-900 mt-1">{{ $nominalTerbesar->note }}</p>
-                    <p class="text-sm font-bold text-cyan-900 mt-1">Rp. {{ number_format($nominalTerbesar->amount, 0, ',', '.') }}</p>
+                    <p class="text-3xl font-bold text-cyan-900 mt-1">{{ $nominalTerbesar->note?? "Belum ada transaksi" }}</p>
+                    <p class="text-sm font-bold text-cyan-900 mt-1">Rp. {{ number_format($nominalTerbesar->amount?? 0, 0, ',', '.') }}</p>
                 </div>
                 <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 col-span-2">
                     <p class="text-sm font-medium text-gray-500">Tugas Tertunda</p>

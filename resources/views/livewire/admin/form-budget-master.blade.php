@@ -11,7 +11,7 @@
                  <div class="mt-1">
                      <input type="number" wire:model="budget" id="budget"
                          class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                     @error('name')
+                     @error('budget')
                          <span class="text-sm text-red-500">
                              {{ $message }}
                          </span>

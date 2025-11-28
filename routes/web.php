@@ -35,10 +35,11 @@ Route::prefix('karyawan')->middleware(['auth','role:karyawan'])
     Route::view('/transaksi','pages/karyawan/transaksi' )->name('transaksi');
     Route::view('/transaksi/create', 'pages/karyawan/form-transaksi')->name('transaksi.create');
     Route::view('/chart' , 'pages/karyawan/chart')->name('chart');
+    Route::get('/gantipassword/{id}', function ($id) {
+        return view('pages.karyawan.gantipassword', compact('id'));
+    })->name('karyawan.gantipassword');
 });
-// testing account
-// email:jawz08@example.com
-// password:12345678
+
 
 
 // admin routes
@@ -56,15 +57,17 @@ Route::prefix('admin')->middleware(['auth','role:admin'])
     Route::view('/budget/tambah', 'pages/admin/formbudget')->name('admin.tambahbudget');
     Route::get('/budget/anggaran', FormBudgetMaster::class)->name('admin.budget_master');
     Route::view('/chart', 'pages/admin/chart-budget')->name('chartadmin');
+    Route::get('/transaksi/edit/{id}', function ($id) {
+        return view('pages.admin.edittransaksi', compact('id'));
+        })->name('admin.edittransaksi');
+    Route::get('/gantipassword/{id}', function ($id) {
+       return view('pages.admin.gantipassword', compact('id'));
+    })->name('admin.gantipassword'); 
 });
-// testing account
-// email:rian@example.com
-// password:rian180707
-Route::get('/transaksi/edit/{id}', function ($id) {
-    return view('pages.admin.edittransaksi', compact('id'));
-})->name('admin.edittransaksi');
 
-    
+
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)

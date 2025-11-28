@@ -10,16 +10,26 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Transaksi extends Component
 {
+    public $statusFilter;
+
     public function export()
     {
-        return Excel::download(new TransaksiExport, 'data-transaksi-'.now()->timestamp.'.xlsx');
+        return Excel::download(new TransaksiExport, 'data-transaksi-' . now()->timestamp . '.xlsx');
     }
-    
+
     public function render()
     {
-        return view('livewire.admin.transaksi',  [
-            'transaksi' => transaction::all(),
-            'flowtransaksi' => transaction::all()->count(),
+        $status = $this->statusFilter;
+
+        $query = transaction::query();
+
+        if ($status !== '' && $status !== null) {
+            $query->where('status', $status);
+        }
+
+        return view('livewire.admin.transaksi', [
+            'transaksi' => $query->get(),
+            'flowtransaksi' => transaction::count(),
             'ditolak' => transaction::where('status', 'di tolak')->count(),
             'disetujui' => transaction::where('status', 'di setujui')->count(),
             'menunggu' => transaction::where('status', 'menunggu')->count(),

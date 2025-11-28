@@ -14,6 +14,7 @@ class transaction extends Model
         'type',
         'budget_id',
         'user_id',
+        'image',
     ];
 
     public function user()

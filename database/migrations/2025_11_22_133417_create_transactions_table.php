@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->enum('type', ['pemasukan', 'pengeluaran']);
             $table->enum('status', ['menunggu', 'di setujui', 'di tolak']);
+            $table->string('image');
             $table->unsignedBigInteger('budget_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('budget_id')->references('id')->on('budgets')->onDelete('cascade');

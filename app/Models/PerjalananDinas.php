@@ -16,6 +16,9 @@ class PerjalananDinas extends Model
         'budget_id',
     ];
 
+    protected $guarded = [
+        'id',
+    ];
     public function budget()
     {
         return $this->belongsTo(budgets::class);

@@ -10,15 +10,25 @@ use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Budget extends Component
-{
-     public function export()
+{ 
+    public $search = '';
+    // protected $queryString = ['search'];
+    
+    // HILANGKAN FUNGSI mount()
+    // Karena query sudah dilakukan secara dinamis di render(), mount() tidak diperlukan dan hanya menyebabkan query ganda.
+    // public function mount()
+    // {
+    //     $this->searchKey = budgets::all();
+    // }
+    
+    public function export()
     {
         return Excel::download(new BudgetExport, 'data-budget-'.now()->timestamp.'.xlsx');
     }
     
     public function deletebudget($id)
     {
-
+        // ... (Logika delete sudah benar, tidak perlu diubah)
         $budget = budgets::find($id);
         if ($budget) {
             $budget->delete();
@@ -27,14 +37,15 @@ class Budget extends Component
             session()->flash('error', 'Budget tidak ditemukan.');
         }
     }
-    
+
     public function render()
     {
+
         return view('livewire.admin.budget',[
             'title' => 'Budget Management',
-            'budgets' => budgets::all(),
+            'budgets' => budgets::all(), 
             'budget_master' => ModelsBudgetmaster::all(),
-            'totalBudget' => budgets::all()->count(),
+            'totalBudget' => budgets::count(),
         ])->extends('layouts.admin');
     }
 }

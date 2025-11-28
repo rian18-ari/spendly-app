@@ -7,7 +7,7 @@
                 {{ number_format($budget_master->first()?->budget ?? 0, 0, ',', '.') }}</p>
         </div>
         <div class="p-6 rounded-xl shadow-lg border-2 bg-amber-50 col-span-2">
-            <p class="text-sm font-medium text-gray-500">Pengeluaran (Bulan Ini)</p>
+            <p class="text-sm font-medium text-gray-500">Pengeluaran</p>
             <p class="text-3xl font-bold text-cyan-900 mt-1">Rp. {{ number_format($total_pengeluaran, 0, ',', '.') }}
             </p>
         </div>
@@ -208,3 +208,10 @@
     });
 </script>
 @endscript
+
+budgetChart = new Chart(ctx, {
+    type: 'pie',
+    data: { ... },
+    options: { ... }
+});
+

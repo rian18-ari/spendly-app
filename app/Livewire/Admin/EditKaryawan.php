@@ -39,7 +39,7 @@ class EditKaryawan extends Component
 
         $this->user->update($validatedData);
 
-        session()->flash('message', 'Karyawan **'.$this->user->name.'** berhasil diperbarui!');
+        session()->flash('success', 'Karyawan '.$this->user->name.' berhasil diperbarui!');
 
         return redirect()->route('admin.karyawan');
     }

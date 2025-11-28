@@ -40,7 +40,7 @@ class Tambahkaryawan extends Component
             'role' => $this->role,
         ]);
 
-        session()->flash('message', 'Karyawan berhasil ditambahkan.');
+        session()->flash('success', 'Karyawan berhasil ditambahkan.');
         return redirect()->route('admin.karyawan');
     }
     

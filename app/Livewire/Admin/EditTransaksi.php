@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\transaction;
+use App\Models\User;
 
 class EditTransaksi extends Component
 {
@@ -11,11 +12,11 @@ class EditTransaksi extends Component
     public $note;
     public $amount;
     public $type;
-    public $budget_id;
-    public $user_id;
+    public $status;
     public $date;
-    public $id;
-    public $transaksi;
+    public $image;
+
+    public transaction $transaksi;
     
     public function mount($id)
     {
@@ -24,13 +25,46 @@ class EditTransaksi extends Component
         $this->note = $this->transaksi->note;
         $this->amount = $this->transaksi->amount;
         $this->type = $this->transaksi->type;
-        $this->budget_id = $this->transaksi->budget_id;
-        $this->user_id = $this->transaksi->user_id;
+        $this->status = $this->transaksi->status;
         $this->date = $this->transaksi->date;
+        $this->image = $this->transaksi->image;
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'note' => 'required',
+            'amount' => 'required',
+            'type' => 'required',
+            'status' => 'required',
+        ]);
+
+        // dd($this);
+
+        $this->transaksi->update([
+            'note' => $this->note,
+            'amount' => $this->amount,
+            'type' => $this->type,
+            'status' => $this->status,
+            'date' => $this->date,
+            'image' => $this->image,
+        ]);
+
+        session()->flash('success', 'Data berhasil diupdate');
+        return redirect()->route('transaksiadmin');
+        
     }
     
     public function render()
     {
-        return view('livewire.admin.edit-transaksi')->extends('layouts.admin');
+        $userIds = User::find($this->transaksi->user_id);
+        $userName = $userIds->name;
+        // dd($userName);
+
+        
+        return view('livewire.admin.edit-transaksi', [
+            'transaksi' => transaction::all(),
+            'userName' => $userName
+        ])->extends('layouts.admin');
     }
 }

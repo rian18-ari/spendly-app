@@ -10,12 +10,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class Karyawanlist extends Component
 {
     public $selected_id;
+    public $search;
 
     
     public function render()
     {
         return view('livewire.admin.karyawanlist', [
-            'karyawans' => User::where('role', 'karyawan')->get(),
+            'karyawans' => User::where('role', 'karyawan')->where('name', 'like', '%' . $this->search . '%')->get(),
             'totalkaryawan' => user::all()->count(),
             'jeniskaryawan' => User::where('role', 'karyawan')->count(),
             'totaladmin' => User::where('role', 'admin')->count(),

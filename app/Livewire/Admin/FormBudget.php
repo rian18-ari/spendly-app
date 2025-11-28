@@ -47,8 +47,9 @@ class FormBudget extends Component
             'total_amount.numeric' => 'nominal harus angka!',
             'pilihan_users' => 'pilih karyawan!',
             'detail.required' => 'Harap di isi!'
-        ]);
-        
+        ]); 
+
+        // pengambilan data tahun dari sistem
         $tahunbudget = Carbon::parse($this->start_date)->year;
         // dd($tahunbudget);
 
@@ -61,21 +62,21 @@ class FormBudget extends Component
                                         ->lockForUpdate() // Mencegah Double Spending
                                         ->first(); 
 
-        //     // 4. GUARD CLAUSE 1: PASTIKAN MASTER BUDGET DITEMUKAN (Mencegah error NULL)
+        //  4. GUARD CLAUSE 1: PASTIKAN MASTER BUDGET DITEMUKAN (Mencegah error NULL)
             if (!$masterBudget) {
                 DB::rollBack();
                 session()->flash('error', 'Master Budget untuk tahun ' . $tahunbudget . ' tidak ditemukan!');
                 return;
             }
 
-        //     // 5. GUARD CLAUSE 2: CEK SALDO (Logika Saldo yang Benar)
+        //  5. GUARD CLAUSE 2: CEK SALDO (Logika Saldo yang Benar)
             if ($masterBudget->budget < $this->total_amount) {
                 DB::rollBack();
                 session()->flash('error', 'Maaf, saldo budget ' . $tahunbudget . ' tidak cukup.');
                 return;
             }
             
-        //     // 6. OPERASI 1: PENGURANGAN DAN SIMPAN MASTER BUDGET
+        // 6. OPERASI 1: PENGURANGAN DAN SIMPAN MASTER BUDGET
             $masterBudget->budget -= $this->total_amount;
             $masterBudget->save();
             // dd($masterBudget);
@@ -102,14 +103,14 @@ class FormBudget extends Component
             // 9. COMMIT
             DB::commit();
             
-            session()->flash('message', 'Budget berhasil dialokasikan dan Master Budget dikurangi.');
+            session()->flash('success', 'Budget berhasil dialokasikan.');
             return redirect()->route('admin.budget');
             
         } catch (\Exception $e) {
             // 10. ROLLBACK TEKNIS
             DB::rollBack();
-            // dd($e); // Untuk debugging
-            session()->flash('error', 'Terjadi kesalahan sistem yang tidak terduga. Transaksi dibatalkan.');
+            // dd($e);
+            session()->flash('error', 'Terjadi kesalahan. Transaksi dibatalkan.');
             return; 
         }
     }

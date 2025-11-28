@@ -54,15 +54,11 @@
     <script>
         document.addEventListener('livewire:initialized', () => {
             try {
-                // --- 1. SETUP DATA ---
-                // Catatan: Asumsi properti Livewire di PHP sudah diganti namanya (budgetLabels/transactionLabels)
-                // Jika di PHP masih menggunakan $chartLabels, $chartData, $labels, $count, maka data di bawah ini sudah benar.
                 const pieLabels = JSON.parse('{!! json_encode($chartLabels) !!}');
                 const pieData = JSON.parse('{!! json_encode($chartData) !!}');
                 const barLabels = JSON.parse('{!! json_encode($labels) !!}');
-                const barData = JSON.parse('{!! json_encode($count) !!}'); // Data hitungan/count untuk Bar Chart
+                const barData = JSON.parse('{!! json_encode($count) !!}');
 
-                // Buat fungsi untuk menghasilkan warna acak yang cerah
                 function generateRandomColor() {
                     const r = Math.floor(Math.random() * 200) + 50;
                     const g = Math.floor(Math.random() * 200) + 50;
@@ -71,28 +67,19 @@
                 }
 
                 const pieBackgroundColors = pieData.map(() => generateRandomColor());
-                // Warna tunggal untuk Bar Chart (agar tidak terlalu ramai)
                 const barBackgroundColor = 'rgba(75, 192, 192, 0.8)';
-
-
-                // -------------------------------------------------------------------
-                // --- 2. INISIALISASI CHART PERTAMA (PIE CHART) ---
-                // -------------------------------------------------------------------
-                const pieCanvas = document.getElementById('budgetChartpie'); // Asumsi ID ini ada di HTML
+                const pieCanvas = document.getElementById('budgetChartpie');
 
                 if (pieData.length > 0) {
                     const ctxPie = pieCanvas.getContext('2d');
 
-                    // Objek Config Pie (BUG FIXED!)
                     const configPie = {
                         type: 'pie',
                         data: {
-                            // BUG FIX 1: 'label' tidak boleh di properti data, harusnya 'labels'
                             labels: pieLabels,
                             datasets: [{
                                 label: 'Total Anggaran (Rp)',
                                 data: pieData,
-                                // BUG FIX 2: backgroundColors harusnya tanpa 's' di datasets
                                 backgroundColor: pieBackgroundColors,
                                 hoverOffset: 4,
                             }]
@@ -112,28 +99,21 @@
                     };
                     new Chart(ctxPie, configPie); // Inisialisasi Chart 1
                 } else {
-                    // Penanganan Data Kosong Pie Chart
                     pieCanvas.outerHTML = '<p class="text-center text-red-500 py-12">Data Anggaran Kosong.</p>';
                 }
 
-                // -------------------------------------------------------------------
-                // --- 3. INISIALISASI CHART KEDUA (BAR CHART) ---
-                // -------------------------------------------------------------------
-                // BUG FIX 3: Ganti ID di sini sesuai ID Canvas kedua yang kamu siapkan (misal 'chartBarTransaction')
-                const barCanvas = document.getElementById(
-                'budgetchartbar'); // Asumsi kamu menggunakan ID 'budgetchartline'
+                const barCanvas = document.getElementById('budgetchartbar');
 
                 if (barData.length > 0) {
                     const ctxBar = barCanvas.getContext('2d');
 
-                    // Objek Config Bar
                     const configBar = {
                         type: 'bar',
                         data: {
-                            labels: barLabels, // Data dari $labels (Tipe Transaksi)
+                            labels: barLabels,
                             datasets: [{
                                 label: 'Jumlah Transaksi',
-                                data: barData, // Data dari $count (Hitungan Transaksi)
+                                data: barData,
                                 backgroundColor: barBackgroundColor,
                                 borderColor: barBackgroundColor.replace('0.8', '1'),
                                 borderWidth: 1,
@@ -161,15 +141,13 @@
                             }
                         }
                     };
-                    new Chart(ctxBar, configBar); // Inisialisasi Chart 2
+                    new Chart(ctxBar, configBar);
                 } else {
-                    // Penanganan Data Kosong Bar Chart
                     barCanvas.outerHTML = '<p class="text-center text-red-500 py-12">Data Transaksi Kosong.</p>';
                 }
 
 
             } catch (e) {
-                // BUG FIX 4: Pastikan ID 'budgetChart' di sini adalah ID kontainer default yang kamu tangani
                 console.error("Gagal mem-parse data chart dari PHP:", e);
                 const errorContainer = document.getElementById('budgetChart');
                 if (errorContainer) {

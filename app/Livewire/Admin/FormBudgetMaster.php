@@ -40,6 +40,7 @@ class FormBudgetMaster extends Component
             'detail' => $this->detail,
         ]);
 
+        session()->flash('success', 'Budget berhasil ditambahkan.');
         return redirect()->route('admin.budget');
 
     }
