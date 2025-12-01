@@ -19,16 +19,8 @@ class Transaksi extends Component
 
     public function render()
     {
-        $status = $this->statusFilter;
-
-        $query = transaction::query();
-
-        if ($status !== '' && $status !== null) {
-            $query->where('status', $status);
-        }
-
         return view('livewire.admin.transaksi', [
-            'transaksi' => $query->get(),
+            'transaksi' => transaction::all(),
             'flowtransaksi' => transaction::count(),
             'ditolak' => transaction::where('status', 'di tolak')->count(),
             'disetujui' => transaction::where('status', 'di setujui')->count(),

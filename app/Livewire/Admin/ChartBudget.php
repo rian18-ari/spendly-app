@@ -25,9 +25,6 @@ class ChartBudget extends Component
 
     private function loadChartData()
     {
-        // Mengambil data dari database.
-        // Kita kelompokkan berdasarkan 'name' untuk mendapatkan total_amount per kegiatan.
-        // Jika kamu memiliki banyak data, lebih baik batasi atau tambahkan filter.
         $transactions = DB::table('budgets')
                           ->select('name', DB::raw('SUM(total_amount) as total'))
                           ->groupBy('name')
