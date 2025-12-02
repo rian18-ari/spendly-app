@@ -14,7 +14,7 @@ class UsersExport implements FromCollection
     */
     public function collection()
     {
-        return User::where('id', 'name', 'email', 'no_hp', 'role');
+        return User::select('id', 'name', 'email', 'no_hp', 'role')->get();
     }
 
     public function heading(): array

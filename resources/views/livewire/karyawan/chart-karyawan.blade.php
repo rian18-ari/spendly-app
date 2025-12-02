@@ -7,16 +7,7 @@
         </h3>
 
         {{-- >>> Filter Dropdown Livewire <<< --}}
-        <select 
-            wire:model.live="filterDays"
-            wire:change="loadChartData"
-            class="border border-gray-300 rounded-lg text-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-        >
-            <option value="7">7 Hari Terakhir</option>
-            <option value="14">14 Hari Terakhir</option>
-            <option value="30">30 Hari Terakhir</option>
-            <option value="90">90 Hari Terakhir</option>
-        </select>
+        
     </div>
 
     {{-- Chart Container with wire:ignore to prevent Livewire from re-rendering the canvas --}}

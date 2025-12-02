@@ -209,9 +209,3 @@
 </script>
 @endscript
 
-budgetChart = new Chart(ctx, {
-    type: 'pie',
-    data: { ... },
-    options: { ... }
-});
-
